@@ -148,7 +148,6 @@ h1 {
     font-size: 12px;
     color: #8b95a5;
 }
-Hemen altına şunu ekle:
 
 .edit-button {
     border: none;
@@ -275,9 +274,10 @@ Hemen altına şunu ekle:
         <div class="grid">
 
             <div class="field">
-                <label>Full Name</label>
-                <strong>Gencer Düven</strong>
-            </div>
+    <label>Full Name</label>
+    <strong id="fullNameDisplay">Gencer Düven</strong>
+    <input id="fullNameInput" type="text" value="Gencer Düven" style="display:none;">
+</div>
 
             <div class="field">
                 <label>Date of Birth</label>
@@ -362,7 +362,12 @@ Hemen altına şunu ekle:
 </main>
 <script>
 function toggleEdit() {
-    alert("Edit Profile will be connected to your health data in the next step.");
+    const display = document.getElementById("fullNameDisplay");
+    const input = document.getElementById("fullNameInput");
+
+    display.style.display = "none";
+    input.style.display = "block";
+    input.focus();
 }
 </script>
 </body>
