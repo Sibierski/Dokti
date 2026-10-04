@@ -1,282 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOKTİ | Dashboard</title>
 
-    <title>DOKTİ | Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: #ffffff;
+    }
 
-        body {
-            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f4f7f8;
-            color: #173f52;
-        }
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
 
-        header {
-            height: 72px;
-            background: white;
-            border-bottom: 1px solid #e2e8eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6%;
-        }
+    /* SIDEBAR */
 
-        .logo {
-            font-size: 27px;
-            font-weight: 800;
-        }
+    .sidebar {
+      width: 250px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      padding: 30px 20px;
+      background: #091522;
+    }
 
-        .logo span {
-            color: #27a88a;
-        }
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 45px;
+    }
 
-        .profile {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #dff4ee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #16836b;
-            font-weight: 800;
-        }
+    .profile-mini {
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
 
-        main {
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 6%;
-        }
+    .profile-mini strong {
+      display: block;
+      margin-bottom: 5px;
+    }
 
-        .welcome {
-            margin-bottom: 35px;
-        }
+    .profile-mini span {
+      font-size: 12px;
+      opacity: .55;
+    }
 
-        .welcome small {
-            color: #27a88a;
-            font-weight: 700;
-        }
+    nav a {
+      display: block;
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      padding: 13px 12px;
+      border-radius: 9px;
+      margin-bottom: 5px;
+    }
 
-        .welcome h1 {
-            font-size: 42px;
-            margin-top: 8px;
-        }
+    nav a:hover,
+    nav a.active {
+      background: rgba(255,255,255,.08);
+      color: white;
+    }
 
-        .welcome p {
-            color: #6b7b84;
-            margin-top: 8px;
-        }
+    /* MAIN */
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+    .main {
+      flex: 1;
+      padding: 40px;
+      max-width: 1500px;
+    }
 
-        .card {
-            background: white;
-            border: 1px solid #e1e8eb;
-            border-radius: 18px;
-            padding: 28px;
-        }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+    }
 
-        .card h3 {
-            margin-bottom: 12px;
-        }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      opacity: .5;
+      margin-bottom: 10px;
+    }
 
-        .value {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
+    h1 {
+      margin: 0;
+      font-size: 38px;
+    }
 
-        .muted {
-            color: #7a8991;
-            font-size: 14px;
-        }
+    .avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: white;
+      color: #07111f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
 
-        .wide {
-            grid-column: span 2;
-        }
+    /* INTELLIGENCE */
 
-        .insight {
-            background: #173f52;
-            color: white;
-        }
+    .intelligence {
+      padding: 28px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.025)
+      );
+      margin-bottom: 28px;
+    }
 
-        .insight p {
-            color: #c5d4da;
-            margin-top: 12px;
-            line-height: 1.6;
-        }
+    .intelligence h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
 
-        .timeline {
-            margin-top: 40px;
-        }
+    .intelligence p {
+      max-width: 700px;
+      line-height: 1.6;
+      opacity: .65;
+    }
 
-        .timeline h2 {
-            margin-bottom: 20px;
-        }
+    .ai-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      background: white;
+      color: #07111f;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
 
-        .event {
-            background: white;
-            padding: 20px;
-            border-radius: 14px;
-            margin-bottom: 12px;
-            border: 1px solid #e1e8eb;
-        }
+    /* CARDS */
 
-        .event strong {
-            display: block;
-            margin-bottom: 5px;
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
 
-        @media (max-width: 800px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
+    .card {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 15px;
+      padding: 22px;
+      background: rgba(255,255,255,.035);
+    }
 
-            .wide {
-                grid-column: span 1;
-            }
-        }
-    </style>
+    .card-label {
+      font-size: 12px;
+      opacity: .5;
+      margin-bottom: 15px;
+    }
+
+    .card-value {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .card-small {
+      font-size: 12px;
+      opacity: .45;
+      margin-top: 8px;
+    }
+
+    /* LOWER */
+
+    .lower {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+    }
+
+    .panel {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 15px;
+      padding: 25px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+    }
+
+    .activity {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .activity:last-child {
+      border-bottom: none;
+    }
+
+    .activity-title {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .activity-date {
+      font-size: 12px;
+      opacity: .45;
+      margin-top: 5px;
+    }
+
+    .status {
+      font-size: 11px;
+      opacity: .6;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .lower {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .app {
+        display: block;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+
+      nav {
+        display: flex;
+        overflow-x: auto;
+      }
+
+      nav a {
+        white-space: nowrap;
+        margin-right: 5px;
+      }
+
+      .main {
+        padding: 25px 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+<div class="app">
 
-    <div class="logo">
-        DOKT<span>İ</span>
+  <aside class="sidebar">
+
+    <div class="logo">DOKTİ</div>
+
+    <div class="profile-mini">
+      <strong>Gencer</strong>
+      <span>Personal Health Profile</span>
     </div>
 
-    <div class="profile">
-        G
-    </div>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="#">Health Profile</a>
+      <a href="#">Health Records</a>
+      <a href="#">Lab Results</a>
+      <a href="#">Medications</a>
+      <a href="#">Health Timeline</a>
+      <a href="#">AI Intelligence</a>
+    </nav>
 
-</header>
+  </aside>
 
-<main>
 
-    <section class="welcome">
+  <main class="main">
 
-        <small>PERSONAL HEALTH DASHBOARD</small>
+    <div class="topbar">
 
+      <div>
+        <div class="eyebrow">PERSONAL HEALTH DASHBOARD</div>
         <h1>Good morning, Gencer.</h1>
+      </div>
 
-        <p>
-            Here is an overview of your health journey.
-        </p>
+      <div class="avatar">G</div>
+
+    </div>
+
+
+    <section class="intelligence">
+
+      <div class="eyebrow">DOKTİ INTELLIGENCE</div>
+
+      <h2>Your health, connected.</h2>
+
+      <p>
+        DOKTİ brings together your health records, laboratory results,
+        medications and timeline to help you understand your health
+        information in context.
+      </p>
+
+      <a href="#" class="ai-button">
+        Open AI Intelligence
+      </a>
 
     </section>
 
 
     <section class="grid">
 
-        <div class="card">
+      <div class="card">
+        <div class="card-label">HEALTH PROFILE</div>
+        <div class="card-value">Active</div>
+        <div class="card-small">Profile information available</div>
+      </div>
 
-            <h3>Health Profile</h3>
+      <div class="card">
+        <div class="card-label">HEALTH RECORDS</div>
+        <div class="card-value">24</div>
+        <div class="card-small">Documents & records</div>
+      </div>
 
-            <div class="value">Active</div>
+      <div class="card">
+        <div class="card-label">LAB RESULTS</div>
+        <div class="card-value">12</div>
+        <div class="card-small">Latest results available</div>
+      </div>
 
-            <div class="muted">
-                Your health profile is up to date.
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>Health Records</h3>
-
-            <div class="value">24</div>
-
-            <div class="muted">
-                Records connected to DOKTİ.
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>Last Update</h3>
-
-            <div class="value">Today</div>
-
-            <div class="muted">
-                Your health timeline was updated.
-            </div>
-
-        </div>
-
-
-        <div class="card wide insight">
-
-            <h3>✦ DOKTİ Intelligence</h3>
-
-            <p>
-                DOKTİ continuously connects your health information
-                to help you understand changes, patterns and important
-                questions in your health journey.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>Upcoming</h3>
-
-            <div class="value">2</div>
-
-            <div class="muted">
-                Health-related events.
-            </div>
-
-        </div>
+      <div class="card">
+        <div class="card-label">MEDICATIONS</div>
+        <div class="card-value">3</div>
+        <div class="card-small">Current medications</div>
+      </div>
 
     </section>
 
 
-    <section class="timeline">
+    <section class="lower">
 
-        <h2>Recent Health Activity</h2>
+      <div class="panel">
 
-        <div class="event">
-            <strong>Health record added</strong>
-            <span class="muted">
-                Laboratory information was added to your timeline.
-            </span>
+        <h3>Recent Health Activity</h3>
+
+        <div class="activity">
+          <div>
+            <div class="activity-title">Laboratory result added</div>
+            <div class="activity-date">Today</div>
+          </div>
+          <div class="status">NEW</div>
         </div>
 
-        <div class="event">
-            <strong>Health profile updated</strong>
-            <span class="muted">
-                Your personal health information was updated.
-            </span>
+        <div class="activity">
+          <div>
+            <div class="activity-title">Health record updated</div>
+            <div class="activity-date">Yesterday</div>
+          </div>
+          <div class="status">UPDATED</div>
         </div>
 
-        <div class="event">
-            <strong>DOKTİ Intelligence</strong>
-            <span class="muted">
-                New health information is ready to review.
-            </span>
+        <div class="activity">
+          <div>
+            <div class="activity-title">Medication added</div>
+            <div class="activity-date">3 days ago</div>
+          </div>
+          <div class="status">ACTIVE</div>
         </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>Upcoming</h3>
+
+        <div class="activity">
+          <div>
+            <div class="activity-title">Health check</div>
+            <div class="activity-date">Upcoming</div>
+          </div>
+        </div>
+
+        <div class="activity">
+          <div>
+            <div class="activity-title">Lab review</div>
+            <div class="activity-date">Upcoming</div>
+          </div>
+        </div>
+
+      </div>
 
     </section>
 
-</main>
+  </main>
+
+</div>
 
 </body>
 </html>
