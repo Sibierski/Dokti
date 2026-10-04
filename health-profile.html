@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOKTİ | Health Profile</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e6e9ef;
+    padding: 28px 20px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 45px;
+}
+
+.profile-mini {
+    background: #f3f6fa;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 28px;
+}
+
+.profile-mini strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.profile-mini span {
+    font-size: 12px;
+    color: #7b8494;
+}
+
+.nav-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #9aa3b2;
+    letter-spacing: 1px;
+    margin: 22px 10px 10px;
+}
+
+.nav a {
+    display: block;
+    text-decoration: none;
+    color: #687386;
+    padding: 11px 12px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.nav a:hover {
+    background: #f3f6fa;
+    color: #172033;
+}
+
+.nav a.active {
+    background: #e9eef7;
+    color: #172033;
+    font-weight: 700;
+}
+
+.main {
+    margin-left: 240px;
+    padding: 35px 45px;
+    max-width: 1250px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8b95a5;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #7b8494;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #172033;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.section {
+    background: white;
+    border: 1px solid #e7eaf0;
+    border-radius: 18px;
+    padding: 26px;
+    margin-bottom: 22px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.section-header h2 {
+    font-size: 18px;
+}
+
+.section-header span {
+    font-size: 12px;
+    color: #8b95a5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.field {
+    background: #f8f9fb;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.field label {
+    display: block;
+    font-size: 11px;
+    color: #8b95a5;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.field strong {
+    font-size: 15px;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+.status {
+    display: inline-block;
+    background: #edf7f1;
+    color: #27734a;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+@media (max-width: 800px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 25px 18px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">DOKTİ</div>
+
+    <div class="profile-mini">
+        <strong>Gencer</strong>
+        <span>Personal Health</span>
+    </div>
+
+    <div class="nav-title">MAIN</div>
+
+    <nav class="nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="health-profile.html" class="active">Health Profile</a>
+        <a href="#">Health Records</a>
+        <a href="#">Lab Results</a>
+        <a href="#">Medications</a>
+        <a href="#">Health Timeline</a>
+        <a href="#">AI Intelligence</a>
+    </nav>
+
+</aside>
+
+<main class="main">
+
+    <div class="topbar">
+        <div>
+            <div class="eyebrow">PERSONAL HEALTH PROFILE</div>
+            <h1>Health Profile</h1>
+            <div class="subtitle">
+                Your essential health information in one place.
+            </div>
+        </div>
+
+        <div class="avatar">G</div>
+    </div>
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Basic Information</h2>
+            <span>Personal details</span>
+        </div>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>Full Name</label>
+                <strong>Gencer Düven</strong>
+            </div>
+
+            <div class="field">
+                <label>Date of Birth</label>
+                <strong>—</strong>
+            </div>
+
+            <div class="field">
+                <label>Gender</label>
+                <strong>—</strong>
+            </div>
+
+            <div class="field">
+                <label>Blood Type</label>
+                <strong>—</strong>
+            </div>
+
+            <div class="field">
+                <label>Height</label>
+                <strong>—</strong>
+            </div>
+
+            <div class="field">
+                <label>Weight</label>
+                <strong>—</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Health Information</h2>
+            <span>Medical background</span>
+        </div>
+
+        <div class="grid">
+
+            <div class="field full">
+                <label>Chronic Conditions</label>
+                <strong>None added</strong>
+            </div>
+
+            <div class="field full">
+                <label>Allergies</label>
+                <strong>None added</strong>
+            </div>
+
+            <div class="field full">
+                <label>Previous Surgeries</label>
+                <strong>None added</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="section-header">
+            <h2>Current Status</h2>
+            <span>Profile overview</span>
+        </div>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>Medications</label>
+                <strong>None added</strong>
+            </div>
+
+            <div class="field">
+                <label>Profile Status</label>
+                <span class="status">Profile Started</span>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
