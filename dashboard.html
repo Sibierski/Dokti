@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOKTİ | Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f4f7f8;
+            color: #173f52;
+        }
+
+        header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e2e8eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #27a88a;
+        }
+
+        .profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dff4ee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #16836b;
+            font-weight: 800;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 6%;
+        }
+
+        .welcome {
+            margin-bottom: 35px;
+        }
+
+        .welcome small {
+            color: #27a88a;
+            font-weight: 700;
+        }
+
+        .welcome h1 {
+            font-size: 42px;
+            margin-top: 8px;
+        }
+
+        .welcome p {
+            color: #6b7b84;
+            margin-top: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e1e8eb;
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .value {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .muted {
+            color: #7a8991;
+            font-size: 14px;
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
+        .insight {
+            background: #173f52;
+            color: white;
+        }
+
+        .insight p {
+            color: #c5d4da;
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            margin-top: 40px;
+        }
+
+        .timeline h2 {
+            margin-bottom: 20px;
+        }
+
+        .event {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #e1e8eb;
+        }
+
+        .event strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        DOKT<span>İ</span>
+    </div>
+
+    <div class="profile">
+        G
+    </div>
+
+</header>
+
+<main>
+
+    <section class="welcome">
+
+        <small>PERSONAL HEALTH DASHBOARD</small>
+
+        <h1>Good morning, Gencer.</h1>
+
+        <p>
+            Here is an overview of your health journey.
+        </p>
+
+    </section>
+
+
+    <section class="grid">
+
+        <div class="card">
+
+            <h3>Health Profile</h3>
+
+            <div class="value">Active</div>
+
+            <div class="muted">
+                Your health profile is up to date.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Health Records</h3>
+
+            <div class="value">24</div>
+
+            <div class="muted">
+                Records connected to DOKTİ.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Last Update</h3>
+
+            <div class="value">Today</div>
+
+            <div class="muted">
+                Your health timeline was updated.
+            </div>
+
+        </div>
+
+
+        <div class="card wide insight">
+
+            <h3>✦ DOKTİ Intelligence</h3>
+
+            <p>
+                DOKTİ continuously connects your health information
+                to help you understand changes, patterns and important
+                questions in your health journey.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Upcoming</h3>
+
+            <div class="value">2</div>
+
+            <div class="muted">
+                Health-related events.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="timeline">
+
+        <h2>Recent Health Activity</h2>
+
+        <div class="event">
+            <strong>Health record added</strong>
+            <span class="muted">
+                Laboratory information was added to your timeline.
+            </span>
+        </div>
+
+        <div class="event">
+            <strong>Health profile updated</strong>
+            <span class="muted">
+                Your personal health information was updated.
+            </span>
+        </div>
+
+        <div class="event">
+            <strong>DOKTİ Intelligence</strong>
+            <span class="muted">
+                New health information is ready to review.
+            </span>
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
