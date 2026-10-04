@@ -148,7 +148,22 @@ h1 {
     font-size: 12px;
     color: #8b95a5;
 }
+Hemen altına şunu ekle:
 
+.edit-button {
+    border: none;
+    background: #172033;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    opacity: 0.85;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -252,10 +267,10 @@ h1 {
 
     <section class="section">
 
-        <div class="section-header">
-            <h2>Basic Information</h2>
-            <span>Personal details</span>
-        </div>
+<div class="section-header">
+    <h2>Basic Information</h2>
+    <button class="edit-button" onclick="toggleEdit()">Edit Profile</button>
+</div>
 
         <div class="grid">
 
@@ -345,6 +360,10 @@ h1 {
     </section>
 
 </main>
-
+<script>
+function toggleEdit() {
+    alert("Edit Profile will be connected to your health data in the next step.");
+}
+</script>
 </body>
 </html>
