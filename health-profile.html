@@ -163,6 +163,21 @@ h1 {
 .edit-button:hover {
     opacity: 0.85;
 }
+    .save-button {
+    border: none;
+    background: #27734a;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+.save-button:hover {
+    opacity: 0.85;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -268,7 +283,10 @@ h1 {
 
 <div class="section-header">
     <h2>Basic Information</h2>
-    <button class="edit-button" onclick="toggleEdit()">Edit Profile</button>
+    <div>
+        <button class="edit-button" onclick="toggleEdit()">Edit Profile</button>
+        <button class="save-button" onclick="saveProfile()">Save Changes</button>
+    </div>
 </div>
 
         <div class="grid">
@@ -368,6 +386,15 @@ function toggleEdit() {
     display.style.display = "none";
     input.style.display = "block";
     input.focus();
+}
+
+function saveProfile() {
+    const display = document.getElementById("fullNameDisplay");
+    const input = document.getElementById("fullNameInput");
+
+    display.textContent = input.value;
+    display.style.display = "block";
+    input.style.display = "none";
 }
 </script>
 </body>
