@@ -1,513 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOKTİ | Your Health, Intelligently Connected</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f7f9fb;
-            color: #14212b;
-            line-height: 1.6;
-        }
-
-        nav {
-            height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            background: rgba(255,255,255,0.92);
-            border-bottom: 1px solid #e7edf1;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            backdrop-filter: blur(12px);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            color: #173f52;
-        }
-
-        .logo span {
-            color: #27a88a;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #52616b;
-            margin-left: 32px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        nav a:hover {
-            color: #27a88a;
-        }
-
-        .hero {
-            min-height: 680px;
-            display: flex;
-            align-items: center;
-            padding: 80px 7%;
-            background:
-                radial-gradient(circle at 80% 20%, rgba(39,168,138,0.13), transparent 30%),
-                radial-gradient(circle at 20% 80%, rgba(38,126,158,0.10), transparent 30%),
-                #f7f9fb;
-        }
-
-        .hero-content {
-            max-width: 760px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 30px;
-            background: #e5f6f1;
-            color: #16836b;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: clamp(48px, 7vw, 82px);
-            line-height: 0.98;
-            letter-spacing: -4px;
-            margin-bottom: 28px;
-            color: #142f3d;
-        }
-
-        h1 span {
-            color: #27a88a;
-        }
-
-        .hero p {
-            font-size: 21px;
-            color: #61717b;
-            max-width: 650px;
-            margin-bottom: 38px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .primary {
-            display: inline-block;
-            padding: 15px 25px;
-            background: #173f52;
-            color: white;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .secondary {
-            display: inline-block;
-            padding: 15px 25px;
-            background: white;
-            color: #173f52;
-            border: 1px solid #dce5e9;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .section {
-            padding: 100px 7%;
-            background: white;
-        }
-
-        .section-header {
-            max-width: 700px;
-            margin-bottom: 55px;
-        }
-
-        .section-header small {
-            color: #27a88a;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .section-header h2 {
-            font-size: 46px;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin: 12px 0 18px;
-            color: #142f3d;
-        }
-
-        .section-header p {
-            color: #687983;
-            font-size: 18px;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .card {
-            padding: 34px;
-            border: 1px solid #e3eaed;
-            border-radius: 20px;
-            background: #fbfcfd;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 18px 45px rgba(20,47,61,0.08);
-        }
-
-        .icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #e5f6f1;
-            color: #16836b;
-            font-size: 22px;
-            margin-bottom: 24px;
-        }
-
-        .card h3 {
-            font-size: 21px;
-            margin-bottom: 12px;
-            color: #183b4b;
-        }
-
-        .card p {
-            color: #6a7982;
-            font-size: 15px;
-        }
-
-        .ai-section {
-            padding: 110px 7%;
-            background: #173f52;
-            color: white;
-        }
-
-        .ai-container {
-            max-width: 1100px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-            align-items: center;
-        }
-
-        .ai-section small {
-            color: #6de0bf;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .ai-section h2 {
-            font-size: 50px;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin: 15px 0 22px;
-        }
-
-        .ai-section p {
-            color: #c5d4da;
-            font-size: 18px;
-        }
-
-        .insight {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 22px;
-            padding: 30px;
-        }
-
-        .insight-label {
-            font-size: 12px;
-            color: #8ee8d0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .insight h3 {
-            font-size: 23px;
-            margin-bottom: 12px;
-        }
-
-        .insight p {
-            font-size: 15px;
-            color: #c5d4da;
-        }
-
-        .privacy {
-            padding: 90px 7%;
-            text-align: center;
-            background: #f7f9fb;
-        }
-
-        .privacy h2 {
-            font-size: 40px;
-            color: #173f52;
-            margin-bottom: 16px;
-        }
-
-        .privacy p {
-            max-width: 650px;
-            margin: auto;
-            color: #687983;
-            font-size: 17px;
-        }
-
-        footer {
-            padding: 35px 7%;
-            background: #102f3d;
-            color: #aebfc6;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-        }
-
-        footer strong {
-            color: white;
-        }
-
-        @media (max-width: 800px) {
-            nav {
-                padding: 0 5%;
-            }
-
-            nav a {
-                display: none;
-            }
-
-            .hero {
-                padding: 70px 5%;
-            }
-
-            h1 {
-                font-size: 54px;
-            }
-
-            .section {
-                padding: 75px 5%;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .ai-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .ai-section {
-                padding: 80px 5%;
-            }
-
-            .ai-section h2 {
-                font-size: 40px;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 12px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOKTİ | Personal Health Intelligence</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: white;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 24px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 80px;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .badge {
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: .65;
+    }
+    .hero {
+      padding: 70px 0 100px;
+    }
+    h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: .95;
+      margin: 20px 0;
+    }
+    .hero p {
+      max-width: 650px;
+      font-size: 20px;
+      line-height: 1.6;
+      opacity: .72;
+    }
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    a {
+      text-decoration: none;
+    }
+    .primary {
+      background: white;
+      color: #07111f;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+    .secondary {
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 10px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .card {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+    .card p {
+      line-height: 1.6;
+      opacity: .65;
+    }
+    footer {
+      margin-top: 100px;
+      padding: 30px 0;
+      opacity: .45;
+      font-size: 13px;
+    }
+    @media(max-width: 700px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
 
-    <nav>
-        <div class="logo">DOKT<span>İ</span></div>
-
-        <div>
-            <a href="#platform">Platform</a>
-            <a href="#intelligence">AI Intelligence</a>
-            <a href="#privacy">Privacy</a>
-        </div>
-    </nav>
+    <header>
+      <div class="logo">DOKTİ</div>
+      <div class="badge">PERSONAL HEALTH INTELLIGENCE</div>
+    </header>
 
     <section class="hero">
-        <div class="hero-content">
+      <div class="badge">YOUR HEALTH. CONNECTED.</div>
 
-            <div class="badge">PERSONAL HEALTH INTELLIGENCE</div>
+      <h1>Your health.<br>Intelligently connected.</h1>
 
-            <h1>
-                Your health.<br>
-                <span>Connected.</span>
-            </h1>
+      <p>
+        DOKTİ brings your health information together —
+        records, results, medications, documents and personal
+        health intelligence — in one connected experience.
+      </p>
 
-            <p>
-                DOKTİ brings your health information together,
-                helping you understand your health journey and make
-                better-informed decisions.
-            </p>
-
-            <div class="buttons">
-                <a href="dashboard.html" class="primary">Open DOKTİ</a>
-                <a href="#intelligence" class="secondary">Discover AI Intelligence</a>
-            </div>
-
-        </div>
+      <div class="buttons">
+        <a href="dashboard.html" class="primary">Open DOKTİ</a>
+        <a href="#intelligence" class="secondary">Discover AI Intelligence</a>
+      </div>
     </section>
 
+    <section class="cards">
+      <div class="card">
+        <h3>Health Timeline</h3>
+        <p>See your health journey and important events in one connected timeline.</p>
+      </div>
 
-    <section class="section" id="platform">
+      <div class="card">
+        <h3>Health Records</h3>
+        <p>Keep your medical documents, laboratory results and health information organized.</p>
+      </div>
 
-        <div class="section-header">
-            <small>The DOKTİ Platform</small>
-
-            <h2>
-                Everything about your health.
-                In one place.
-            </h2>
-
-            <p>
-                DOKTİ is designed to turn fragmented health information
-                into a clear, connected and understandable health experience.
-            </p>
-        </div>
-
-        <div class="cards">
-
-            <div class="card">
-                <div class="icon">♥</div>
-
-                <h3>Health Timeline</h3>
-
-                <p>
-                    Keep important health events, measurements,
-                    tests and medical information connected in one
-                    chronological health journey.
-                </p>
-            </div>
-
-
-            <div class="card">
-                <div class="icon">✦</div>
-
-                <h3>AI Health Intelligence</h3>
-
-                <p>
-                    Transform your health information into meaningful
-                    insights and understandable patterns with AI-powered
-                    intelligence.
-                </p>
-            </div>
-
-
-            <div class="card">
-                <div class="icon">⌁</div>
-
-                <h3>Health Records</h3>
-
-                <p>
-                    Organize your health documents, laboratory results,
-                    reports and other important information in one secure
-                    digital environment.
-                </p>
-            </div>
-
-        </div>
-
+      <div class="card" id="intelligence">
+        <h3>AI Health Intelligence</h3>
+        <p>DOKTİ helps you understand patterns and connections across your health information.</p>
+      </div>
     </section>
-
-
-    <section class="ai-section" id="intelligence">
-
-        <div class="ai-container">
-
-            <div>
-                <small>DOKTİ Intelligence</small>
-
-                <h2>
-                    Don't just store your health data.
-                    Understand it.
-                </h2>
-
-                <p>
-                    DOKTİ is built to move beyond traditional health
-                    record keeping. Its intelligence layer helps connect
-                    information and surface meaningful insights from your
-                    personal health journey.
-                </p>
-            </div>
-
-
-            <div class="insight">
-
-                <div class="insight-label">
-                    Example Health Insight
-                </div>
-
-                <h3>
-                    Your health story is more connected than it looks.
-                </h3>
-
-                <p>
-                    DOKTİ can bring together different pieces of your
-                    health information to help you recognize patterns,
-                    changes and questions worth discussing with a
-                    healthcare professional.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="privacy" id="privacy">
-
-        <h2>Your health belongs to you.</h2>
-
-        <p>
-            Privacy and control are fundamental to DOKTİ.
-            Your health information should remain understandable,
-            accessible and under your control.
-        </p>
-
-    </section>
-
 
     <footer>
-
-        <div>
-            <strong>DOKTİ</strong> — Personal Health Intelligence
-        </div>
-
-        <div>
-            © 2026 DOKTİ
-        </div>
-
+      DOKTİ — Personal Health Intelligence
     </footer>
 
+  </div>
 </body>
 </html>
-<!-- GitHub Pages refresh -->
