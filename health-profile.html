@@ -298,10 +298,10 @@ h1 {
 </div>
 
             <div class="field">
-                <label>Date of Birth</label>
-                <strong>—</strong>
-            </div>
-
+    <label>Date of Birth</label>
+    <strong id="dateOfBirthDisplay">—</strong>
+    <input id="dateOfBirthInput" type="date" style="display:none;">
+</div>
             <div class="field">
                 <label>Gender</label>
                 <strong>—</strong>
@@ -380,21 +380,38 @@ h1 {
 </main>
 <script>
 function toggleEdit() {
-    const display = document.getElementById("fullNameDisplay");
-    const input = document.getElementById("fullNameInput");
+    const nameDisplay = document.getElementById("fullNameDisplay");
+    const nameInput = document.getElementById("fullNameInput");
 
-    display.style.display = "none";
-    input.style.display = "block";
-    input.focus();
+    const dobDisplay = document.getElementById("dateOfBirthDisplay");
+    const dobInput = document.getElementById("dateOfBirthInput");
+
+    nameDisplay.style.display = "none";
+    nameInput.style.display = "block";
+
+    dobDisplay.style.display = "none";
+    dobInput.style.display = "block";
+
+    nameInput.focus();
 }
 
 function saveProfile() {
-    const display = document.getElementById("fullNameDisplay");
-    const input = document.getElementById("fullNameInput");
+    const nameDisplay = document.getElementById("fullNameDisplay");
+    const nameInput = document.getElementById("fullNameInput");
 
-    display.textContent = input.value;
-    display.style.display = "block";
-    input.style.display = "none";
+    const dobDisplay = document.getElementById("dateOfBirthDisplay");
+    const dobInput = document.getElementById("dateOfBirthInput");
+
+    nameDisplay.textContent = nameInput.value;
+    nameDisplay.style.display = "block";
+    nameInput.style.display = "none";
+
+    if (dobInput.value) {
+        dobDisplay.textContent = dobInput.value;
+    }
+
+    dobDisplay.style.display = "block";
+    dobInput.style.display = "none";
 }
 </script>
 </body>
