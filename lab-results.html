@@ -115,6 +115,8 @@
             margin-bottom: 22px;
         }
 
+        /* UPLOAD */
+
         .upload-area {
             border: 2px dashed #d1d5db;
             border-radius: 12px;
@@ -149,47 +151,123 @@
             display: none;
         }
 
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #4b5563;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+        }
+
+        .add-result-button {
+            border: none;
+            background: #111827;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .add-result-button:hover {
+            opacity: 0.9;
+        }
+
+        /* RESULTS */
+
         .empty-state {
             text-align: center;
             padding: 35px 20px;
             color: #6b7280;
         }
 
-        .lab-list {
+        .result-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin-top: 15px;
         }
 
-        .lab-record {
-            display: flex;
-            justify-content: space-between;
+        .result-record {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr 1fr;
+            gap: 15px;
             align-items: center;
-            gap: 20px;
             padding: 18px;
             background: #f9fafb;
             border: 1px solid #e5e7eb;
             border-radius: 10px;
         }
 
-        .lab-record-name {
+        .result-name {
             font-weight: 700;
-            margin-bottom: 6px;
         }
 
-        .lab-record-meta {
+        .result-meta {
+            color: #6b7280;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .result-value {
+            font-weight: 700;
+        }
+
+        .result-unit,
+        .result-reference,
+        .result-date {
             color: #6b7280;
             font-size: 13px;
         }
 
-        .lab-record-type {
+        .status {
+            display: inline-block;
+            width: fit-content;
             font-size: 12px;
             padding: 6px 10px;
             border-radius: 20px;
-            background: #eef2ff;
-            color: #3730a3;
-            white-space: nowrap;
+            background: #f3f4f6;
+        }
+
+        @media (max-width: 1000px) {
+
+            .result-record {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 800px) {
@@ -208,9 +286,16 @@
                 padding: 22px;
             }
 
-            .lab-record {
-                flex-direction: column;
-                align-items: flex-start;
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .result-record {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -262,14 +347,14 @@
         </div>
 
 
-        <!-- UPLOAD LAB RESULT -->
+        <!-- UPLOAD LABORATORY REPORT -->
 
         <section class="card">
 
-            <h2>Add Laboratory Results</h2>
+            <h2>Add Laboratory Report</h2>
 
             <p class="card-description">
-                Upload a laboratory report to keep your results organized.
+                Upload a laboratory report to keep your medical documents organized.
             </p>
 
             <div class="upload-area">
@@ -298,26 +383,183 @@
         </section>
 
 
-        <!-- LABORATORY RESULTS -->
+        <!-- ADD STRUCTURED RESULT -->
+
+        <section class="card">
+
+            <h2>Add Lab Result</h2>
+
+            <p class="card-description">
+                Add an individual laboratory result to your health record.
+            </p>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="testName">
+                        Test Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="testName"
+                        placeholder="e.g. Hemoglobin"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="testResult">
+                        Result
+                    </label>
+
+                    <input
+                        type="text"
+                        id="testResult"
+                        placeholder="e.g. 14.2"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="testUnit">
+                        Unit
+                    </label>
+
+                    <input
+                        type="text"
+                        id="testUnit"
+                        placeholder="e.g. g/dL"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="testReference">
+                        Reference Range
+                    </label>
+
+                    <input
+                        type="text"
+                        id="testReference"
+                        placeholder="e.g. 13.5 - 17.5"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="testDate">
+                        Test Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="testDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="testStatus">
+                        Status
+                    </label>
+
+                    <select id="testStatus">
+
+                        <option value="Normal">
+                            Normal
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                        <option value="Critical">
+                            Critical
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="add-result-button"
+                onclick="addLabResult()"
+            >
+                Add Result
+            </button>
+
+        </section>
+
+
+        <!-- STRUCTURED RESULTS -->
 
         <section class="card">
 
             <h2>Laboratory Results</h2>
 
             <p class="card-description">
-                Your laboratory reports will appear here.
+                Your structured laboratory results will appear here.
             </p>
 
+
             <div
-                id="labResultsList"
-                class="lab-list"
+                id="resultList"
+                class="result-list"
             >
 
                 <div
-                    id="emptyState"
+                    id="emptyResultState"
                     class="empty-state"
                 >
                     No laboratory results added yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- UPLOADED REPORTS -->
+
+        <section class="card">
+
+            <h2>Laboratory Reports</h2>
+
+            <p class="card-description">
+                Uploaded laboratory reports will appear here.
+            </p>
+
+
+            <div
+                id="reportList"
+                class="result-list"
+            >
+
+                <div
+                    id="emptyReportState"
+                    class="empty-state"
+                >
+                    No laboratory reports added yet.
                 </div>
 
             </div>
@@ -331,76 +573,207 @@
 
 <script>
 
-const LAB_STORAGE_KEY = "doktiLabResults";
+/* STORAGE */
+
+const RESULT_STORAGE_KEY =
+    "doktiStructuredLabResults";
+
+const REPORT_STORAGE_KEY =
+    "doktiLabReports";
+
+
+/* ELEMENTS */
 
 const labFileInput =
     document.getElementById("labFileInput");
 
-const labResultsList =
-    document.getElementById("labResultsList");
+const resultList =
+    document.getElementById("resultList");
 
-const emptyState =
-    document.getElementById("emptyState");
+const emptyResultState =
+    document.getElementById("emptyResultState");
+
+const reportList =
+    document.getElementById("reportList");
+
+const emptyReportState =
+    document.getElementById("emptyReportState");
 
 
-function loadLabResults() {
+/* ADD STRUCTURED LAB RESULT */
+
+function addLabResult() {
+
+    const testName =
+        document.getElementById("testName").value.trim();
+
+    const testResult =
+        document.getElementById("testResult").value.trim();
+
+    const testUnit =
+        document.getElementById("testUnit").value.trim();
+
+    const testReference =
+        document.getElementById("testReference").value.trim();
+
+    const testDate =
+        document.getElementById("testDate").value;
+
+    const testStatus =
+        document.getElementById("testStatus").value;
+
+
+    if (
+        !testName ||
+        !testResult ||
+        !testDate
+    ) {
+
+        alert(
+            "Please enter at least the Test Name, Result and Test Date."
+        );
+
+        return;
+    }
+
+
+    const newResult = {
+
+        name:
+            testName,
+
+        result:
+            testResult,
+
+        unit:
+            testUnit || "—",
+
+        reference:
+            testReference || "—",
+
+        date:
+            testDate,
+
+        status:
+            testStatus
+
+    };
+
 
     const savedData =
-        localStorage.getItem(LAB_STORAGE_KEY);
+        localStorage.getItem(
+            RESULT_STORAGE_KEY
+        );
 
-    if (!savedData) {
-        return;
-    }
 
-    const records =
-        JSON.parse(savedData);
+    const results =
+        savedData
+            ? JSON.parse(savedData)
+            : [];
 
-    if (records.length === 0) {
-        return;
-    }
 
-    emptyState.style.display = "none";
+    results.unshift(newResult);
 
-    records.forEach(function(record) {
-        addLabRecordToScreen(record);
-    });
+
+    localStorage.setItem(
+        RESULT_STORAGE_KEY,
+        JSON.stringify(results)
+    );
+
+
+    addResultToScreen(
+        newResult
+    );
+
+
+    emptyResultState.style.display =
+        "none";
+
+
+    document.getElementById("testName").value =
+        "";
+
+    document.getElementById("testResult").value =
+        "";
+
+    document.getElementById("testUnit").value =
+        "";
+
+    document.getElementById("testReference").value =
+        "";
+
+    document.getElementById("testDate").value =
+        "";
+
+    document.getElementById("testStatus").value =
+        "Normal";
 }
 
 
-function addLabRecordToScreen(record) {
+/* SHOW STRUCTURED RESULT */
 
-    const recordElement =
+function addResultToScreen(record) {
+
+    const resultElement =
         document.createElement("div");
 
-    recordElement.className =
-        "lab-record";
+    resultElement.className =
+        "result-record";
 
 
-    recordElement.innerHTML = `
+    resultElement.innerHTML = `
 
         <div>
 
-            <div class="lab-record-name">
+            <div class="result-name">
                 ${record.name}
             </div>
 
-            <div class="lab-record-meta">
-                Added: ${record.date}
+            <div class="result-meta">
+                Laboratory Result
             </div>
 
         </div>
 
 
-        <div class="lab-record-type">
-            ${record.type}
+        <div class="result-value">
+            ${record.result}
+        </div>
+
+
+        <div class="result-unit">
+            ${record.unit}
+        </div>
+
+
+        <div class="result-reference">
+            ${record.reference}
+        </div>
+
+
+        <div class="result-date">
+            ${record.date}
+        </div>
+
+
+        <div>
+
+            <span class="status">
+                ${record.status}
+            </span>
+
         </div>
 
     `;
 
 
-    labResultsList.prepend(recordElement);
+    resultList.prepend(
+        resultElement
+    );
 }
 
+
+/* UPLOAD LABORATORY REPORT */
 
 labFileInput.addEventListener(
     "change",
@@ -415,11 +788,7 @@ labFileInput.addEventListener(
             this.files[0];
 
 
-        emptyState.style.display =
-            "none";
-
-
-        const newRecord = {
+        const newReport = {
 
             name:
                 file.name,
@@ -435,28 +804,34 @@ labFileInput.addEventListener(
 
         const savedData =
             localStorage.getItem(
-                LAB_STORAGE_KEY
+                REPORT_STORAGE_KEY
             );
 
 
-        const records =
+        const reports =
             savedData
                 ? JSON.parse(savedData)
                 : [];
 
 
-        records.unshift(newRecord);
+        reports.unshift(
+            newReport
+        );
 
 
         localStorage.setItem(
-            LAB_STORAGE_KEY,
-            JSON.stringify(records)
+            REPORT_STORAGE_KEY,
+            JSON.stringify(reports)
         );
 
 
-        addLabRecordToScreen(
-            newRecord
+        addReportToScreen(
+            newReport
         );
+
+
+        emptyReportState.style.display =
+            "none";
 
 
         this.value = "";
@@ -465,7 +840,131 @@ labFileInput.addEventListener(
 );
 
 
+/* SHOW UPLOADED REPORT */
+
+function addReportToScreen(record) {
+
+    const reportElement =
+        document.createElement("div");
+
+    reportElement.className =
+        "result-record";
+
+
+    reportElement.innerHTML = `
+
+        <div>
+
+            <div class="result-name">
+                ${record.name}
+            </div>
+
+            <div class="result-meta">
+                Uploaded laboratory report
+            </div>
+
+        </div>
+
+
+        <div class="result-unit">
+            ${record.type}
+        </div>
+
+
+        <div class="result-date">
+            ${record.date}
+        </div>
+
+    `;
+
+
+    reportList.prepend(
+        reportElement
+    );
+}
+
+
+/* LOAD STRUCTURED RESULTS */
+
+function loadLabResults() {
+
+    const savedData =
+        localStorage.getItem(
+            RESULT_STORAGE_KEY
+        );
+
+
+    if (!savedData) {
+        return;
+    }
+
+
+    const results =
+        JSON.parse(savedData);
+
+
+    if (results.length === 0) {
+        return;
+    }
+
+
+    emptyResultState.style.display =
+        "none";
+
+
+    results.forEach(function(record) {
+
+        addResultToScreen(
+            record
+        );
+
+    });
+}
+
+
+/* LOAD UPLOADED REPORTS */
+
+function loadLabReports() {
+
+    const savedData =
+        localStorage.getItem(
+            REPORT_STORAGE_KEY
+        );
+
+
+    if (!savedData) {
+        return;
+    }
+
+
+    const reports =
+        JSON.parse(savedData);
+
+
+    if (reports.length === 0) {
+        return;
+    }
+
+
+    emptyReportState.style.display =
+        "none";
+
+
+    reports.forEach(function(record) {
+
+        addReportToScreen(
+            record
+        );
+
+    });
+}
+
+
+/* INITIAL LOAD */
+
 loadLabResults();
+
+loadLabReports();
 
 </script>
 
