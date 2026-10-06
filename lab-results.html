@@ -155,52 +155,62 @@
             color: #6b7280;
         }
 
-        .lab-table {
-            width: 100%;
-            border-collapse: collapse;
+        .lab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             margin-top: 15px;
         }
 
-        .lab-table th {
-            text-align: left;
-            font-size: 12px;
+        .lab-record {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+        }
+
+        .lab-record-name {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .lab-record-meta {
             color: #6b7280;
-            font-weight: 700;
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
         }
 
-        .lab-table td {
-            padding: 15px 12px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .lab-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .result-value {
-            font-weight: 700;
-        }
-
-        .status {
+        .lab-record-type {
             font-size: 12px;
             padding: 6px 10px;
             border-radius: 20px;
-            background: #f3f4f6;
+            background: #eef2ff;
+            color: #3730a3;
+            white-space: nowrap;
         }
 
         @media (max-width: 800px) {
+
+            .app {
+                flex-direction: column;
+            }
+
             .sidebar {
-                width: 190px;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
             }
 
             .main {
                 padding: 22px;
             }
 
-            .lab-table {
-                font-size: 13px;
+            .lab-record {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -226,24 +236,33 @@
 
     </aside>
 
+
     <main class="main">
 
         <div class="topbar">
 
             <div>
-                <div class="eyebrow">PERSONAL LAB RESULTS</div>
+
+                <div class="eyebrow">
+                    PERSONAL LAB RESULTS
+                </div>
 
                 <h1>Lab Results</h1>
 
                 <div class="subtitle">
                     Track and understand your laboratory results over time.
                 </div>
+
             </div>
 
-            <div class="avatar">G</div>
+            <div class="avatar">
+                G
+            </div>
 
         </div>
 
+
+        <!-- UPLOAD LAB RESULT -->
 
         <section class="card">
 
@@ -261,7 +280,10 @@
                     PDF, JPG or PNG laboratory reports can be added.
                 </p>
 
-                <label for="labFileInput" class="upload-button">
+                <label
+                    for="labFileInput"
+                    class="upload-button"
+                >
                     Choose File
                 </label>
 
@@ -276,16 +298,28 @@
         </section>
 
 
+        <!-- LABORATORY RESULTS -->
+
         <section class="card">
 
             <h2>Laboratory Results</h2>
 
             <p class="card-description">
-                Your structured laboratory results will appear here.
+                Your laboratory reports will appear here.
             </p>
 
-            <div class="empty-state">
-                No laboratory results added yet.
+            <div
+                id="labResultsList"
+                class="lab-list"
+            >
+
+                <div
+                    id="emptyState"
+                    class="empty-state"
+                >
+                    No laboratory results added yet.
+                </div>
+
             </div>
 
         </section>
@@ -293,6 +327,147 @@
     </main>
 
 </div>
+
+
+<script>
+
+const LAB_STORAGE_KEY = "doktiLabResults";
+
+const labFileInput =
+    document.getElementById("labFileInput");
+
+const labResultsList =
+    document.getElementById("labResultsList");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+
+function loadLabResults() {
+
+    const savedData =
+        localStorage.getItem(LAB_STORAGE_KEY);
+
+    if (!savedData) {
+        return;
+    }
+
+    const records =
+        JSON.parse(savedData);
+
+    if (records.length === 0) {
+        return;
+    }
+
+    emptyState.style.display = "none";
+
+    records.forEach(function(record) {
+        addLabRecordToScreen(record);
+    });
+}
+
+
+function addLabRecordToScreen(record) {
+
+    const recordElement =
+        document.createElement("div");
+
+    recordElement.className =
+        "lab-record";
+
+
+    recordElement.innerHTML = `
+
+        <div>
+
+            <div class="lab-record-name">
+                ${record.name}
+            </div>
+
+            <div class="lab-record-meta">
+                Added: ${record.date}
+            </div>
+
+        </div>
+
+
+        <div class="lab-record-type">
+            ${record.type}
+        </div>
+
+    `;
+
+
+    labResultsList.prepend(recordElement);
+}
+
+
+labFileInput.addEventListener(
+    "change",
+    function() {
+
+        if (!this.files.length) {
+            return;
+        }
+
+
+        const file =
+            this.files[0];
+
+
+        emptyState.style.display =
+            "none";
+
+
+        const newRecord = {
+
+            name:
+                file.name,
+
+            type:
+                file.type || "Laboratory Report",
+
+            date:
+                new Date().toLocaleDateString()
+
+        };
+
+
+        const savedData =
+            localStorage.getItem(
+                LAB_STORAGE_KEY
+            );
+
+
+        const records =
+            savedData
+                ? JSON.parse(savedData)
+                : [];
+
+
+        records.unshift(newRecord);
+
+
+        localStorage.setItem(
+            LAB_STORAGE_KEY,
+            JSON.stringify(records)
+        );
+
+
+        addLabRecordToScreen(
+            newRecord
+        );
+
+
+        this.value = "";
+
+    }
+);
+
+
+loadLabResults();
+
+</script>
 
 </body>
 </html>
