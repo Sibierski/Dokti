@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOKTİ | Health Timeline</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            border-right: 1px solid #e5e7eb;
+            padding: 28px 18px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+        }
+
+        .nav a {
+            display: block;
+            text-decoration: none;
+            color: #6b7280;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .nav a:hover {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .nav a.active {
+            background: #111827;
+            color: white;
+        }
+
+        .main {
+            flex: 1;
+            padding: 35px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6b7280;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        .timeline {
+            position: relative;
+            margin-left: 10px;
+            padding-left: 28px;
+            border-left: 2px solid #e5e7eb;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -35px;
+            top: 2px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #111827;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #e5e7eb;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">DOKTİ</div>
+
+        <nav class="nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="health-profile.html">Health Profile</a>
+            <a href="health-records.html">Health Records</a>
+            <a href="lab-results.html">Lab Results</a>
+            <a href="medications.html">Medications</a>
+            <a href="health-timeline.html" class="active">Health Timeline</a>
+            <a href="ai-intelligence.html">AI Intelligence</a>
+        </nav>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <div class="eyebrow">PERSONAL HEALTH JOURNEY</div>
+
+                <h1>Health Timeline</h1>
+
+                <div class="subtitle">
+                    See your important health events in chronological order.
+                </div>
+            </div>
+
+            <div class="avatar">G</div>
+
+        </div>
+
+
+        <section class="card">
+
+            <h2>Your Health Journey</h2>
+
+            <p class="card-description">
+                DOKTİ will bring together important health events,
+                records, laboratory results and medications here.
+            </p>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-date">
+                        Today
+                    </div>
+
+                    <div class="timeline-title">
+                        Health Profile created
+                    </div>
+
+                    <div class="timeline-description">
+                        Your personal health profile has been started.
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-date">
+                        Future
+                    </div>
+
+                    <div class="timeline-title">
+                        Your health events will appear here
+                    </div>
+
+                    <div class="timeline-description">
+                        Laboratory results, medications and health records
+                        will gradually build your personal health timeline.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
