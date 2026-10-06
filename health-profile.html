@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,255 +9,215 @@
 <style>
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #172033;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
 }
 
 .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 240px;
-    height: 100vh;
+    width: 250px;
     background: #ffffff;
-    border-right: 1px solid #e6e9ef;
+    border-right: 1px solid #e5e7eb;
     padding: 28px 20px;
 }
 
 .logo {
-    font-size: 26px;
-    font-weight: 800;
-    color: #111827;
-    margin-bottom: 45px;
-}
-
-.profile-mini {
-    background: #f3f6fa;
-    border-radius: 14px;
-    padding: 14px;
-    margin-bottom: 28px;
-}
-
-.profile-mini strong {
-    display: block;
-    margin-bottom: 4px;
-}
-
-.profile-mini span {
-    font-size: 12px;
-    color: #7b8494;
-}
-
-.nav-title {
-    font-size: 11px;
+    font-size: 28px;
     font-weight: 700;
-    color: #9aa3b2;
-    letter-spacing: 1px;
-    margin: 22px 10px 10px;
+    margin-bottom: 8px;
+}
+
+.profile-name {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 30px;
 }
 
 .nav a {
     display: block;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+    border-radius: 8px;
     text-decoration: none;
-    color: #687386;
-    padding: 11px 12px;
-    border-radius: 10px;
-    margin-bottom: 4px;
+    color: #4b5563;
     font-size: 14px;
 }
 
-.nav a:hover {
-    background: #f3f6fa;
-    color: #172033;
-}
-
+.nav a:hover,
 .nav a.active {
-    background: #e9eef7;
-    color: #172033;
-    font-weight: 700;
+    background: #eef2ff;
+    color: #3730a3;
+    font-weight: 600;
 }
 
 .main {
-    margin-left: 240px;
-    padding: 35px 45px;
-    max-width: 1250px;
+    flex: 1;
+    padding: 32px;
 }
 
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-.eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    color: #8b95a5;
-    letter-spacing: 1.5px;
-    margin-bottom: 8px;
+.topbar h1 {
+    margin: 0;
+    font-size: 26px;
 }
 
-h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    color: #7b8494;
+.topbar p {
+    margin: 6px 0 0;
+    color: #6b7280;
     font-size: 14px;
 }
 
 .avatar {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background: #172033;
+    background: #111827;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-weight: 600;
 }
 
-.section {
-    background: white;
-    border: 1px solid #e7eaf0;
-    border-radius: 18px;
-    padding: 26px;
+.card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 24px;
     margin-bottom: 22px;
 }
 
-.section-header {
+.card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
-.section-header h2 {
-    font-size: 18px;
+.card-header h2 {
+    margin: 0;
+    font-size: 19px;
 }
 
-.section-header span {
-    font-size: 12px;
-    color: #8b95a5;
+.edit-button,
+.save-button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .edit-button {
-    border: none;
-    background: #172033;
-    color: white;
-    padding: 9px 15px;
-    border-radius: 9px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.edit-button:hover {
-    opacity: 0.85;
+    background: #eef2ff;
+    color: #3730a3;
 }
 
 .save-button {
-    border: none;
-    background: #27734a;
+    background: #111827;
     color: white;
-    padding: 9px 15px;
-    border-radius: 9px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-left: 6px;
+    margin-left: 8px;
 }
 
-.save-button:hover {
-    opacity: 0.85;
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.info-item {
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.info-label {
+    display: block;
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .input-field {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #d9dee8;
-    border-radius: 9px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
     background: white;
-    color: #172033;
     font-size: 14px;
-    font-family: inherit;
-    outline: none;
+    margin-top: 2px;
+    display: none;
 }
 
 .input-field:focus {
-    border-color: #172033;
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
-.input-field[type="number"] {
-    appearance: textfield;
-}
-
-.grid {
+.status-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
 }
 
-.field {
-    background: #f8f9fb;
-    border-radius: 12px;
-    padding: 16px;
+.status-item {
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 18px;
 }
 
-.field label {
-    display: block;
-    font-size: 11px;
-    color: #8b95a5;
-    margin-bottom: 7px;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
+.status-item h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
 }
 
-.field strong {
-    font-size: 15px;
-}
-
-.full {
-    grid-column: 1 / -1;
-}
-
-.status {
-    display: inline-block;
-    background: #edf7f1;
-    color: #27734a;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
+.status-item p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 13px;
 }
 
 @media (max-width: 800px) {
+    .layout {
+        flex-direction: column;
+    }
+
     .sidebar {
-        position: relative;
         width: 100%;
-        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
     }
 
     .main {
-        margin-left: 0;
-        padding: 25px 18px;
+        padding: 20px;
     }
 
-    .grid {
+    .info-grid,
+    .status-grid {
         grid-template-columns: 1fr;
-    }
-
-    .full {
-        grid-column: auto;
     }
 }
 </style>
@@ -264,206 +225,374 @@ h1 {
 
 <body>
 
+<div class="layout">
+
 <aside class="sidebar">
 
     <div class="logo">DOKTİ</div>
-
-    <div class="profile-mini">
-        <strong>Gencer</strong>
-        <span>Personal Health</span>
-    </div>
-
-    <div class="nav-title">MAIN</div>
+    <div class="profile-name">Gencer</div>
 
     <nav class="nav">
         <a href="dashboard.html">Dashboard</a>
         <a href="health-profile.html" class="active">Health Profile</a>
-        <a href="#">Health Records</a>
-        <a href="#">Lab Results</a>
-        <a href="#">Medications</a>
-        <a href="#">Health Timeline</a>
-        <a href="#">AI Intelligence</a>
+        <a href="health-records.html">Health Records</a>
+        <a href="lab-results.html">Lab Results</a>
+        <a href="medications.html">Medications</a>
+        <a href="health-timeline.html">Health Timeline</a>
+        <a href="ai-intelligence.html">AI Intelligence</a>
     </nav>
 
 </aside>
 
 <main class="main">
 
-    <div class="topbar">
-        <div>
-            <div class="eyebrow">PERSONAL HEALTH PROFILE</div>
-            <h1>Health Profile</h1>
-            <div class="subtitle">
-                Your essential health information in one place.
-            </div>
-        </div>
+<div class="topbar">
 
-        <div class="avatar">G</div>
+    <div>
+        <h1>Health Profile</h1>
+        <p>Your essential health information in one place.</p>
     </div>
 
-    <section class="section">
+    <div class="avatar">G</div>
 
-        <div class="section-header">
-            <h2>Basic Information</h2>
-            <div>
-                <button class="edit-button" onclick="toggleEdit()">Edit Profile</button>
-                <button class="save-button" onclick="saveProfile()">Save Changes</button>
-            </div>
-        </div>
+</div>
 
-        <div class="grid">
 
-            <div class="field">
-                <label>Full Name</label>
-                <strong id="fullNameDisplay">Gencer Düven</strong>
-                <input id="fullNameInput" class="input-field" type="text" value="Gencer Düven" style="display:none;">
-            </div>
+<section class="card">
 
-            <div class="field">
-                <label>Date of Birth</label>
-                <strong id="dateOfBirthDisplay">—</strong>
-                <input id="dateOfBirthInput" class="input-field" type="date" style="display:none;">
-            </div>
+<div class="card-header">
 
-            <div class="field">
-                <label>Gender</label>
-                <strong id="genderDisplay">—</strong>
-                <select id="genderInput" class="input-field" style="display:none;">
-                    <option value="">Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
-                </select>
-            </div>
+    <h2>Basic Information</h2>
 
-            <div class="field">
-                <label>Blood Type</label>
-                <strong id="bloodTypeDisplay">—</strong>
-                <select id="bloodTypeInput" class="input-field" style="display:none;">
-                    <option value="">Select</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                </select>
-            </div>
+    <div>
 
-            <div class="field">
-                <label>Height</label>
-                <strong id="heightDisplay">—</strong>
-                <input id="heightInput" class="input-field" type="number" placeholder="cm" style="display:none;">
-            </div>
+        <button class="edit-button" onclick="toggleEdit()">
+            Edit Profile
+        </button>
 
-            <div class="field">
-                <label>Weight</label>
-                <strong id="weightDisplay">—</strong>
-                <input id="weightInput" class="input-field" type="number" step="0.1" placeholder="kg" style="display:none;">
-            </div>
+        <button class="save-button" onclick="saveProfile()">
+            Save Changes
+        </button>
 
-        </div>
+    </div>
 
-    </section>
+</div>
 
-    <section class="section">
 
-        <div class="section-header">
-            <h2>Health Information</h2>
-            <span>Medical background</span>
-        </div>
+<div class="info-grid">
 
-        <div class="grid">
 
-            <div class="field full">
-                <label>Chronic Conditions</label>
-                <strong>None added</strong>
-            </div>
+<div class="info-item">
 
-            <div class="field full">
-                <label>Allergies</label>
-                <strong>None added</strong>
-            </div>
+    <span class="info-label">Full Name</span>
 
-            <div class="field full">
-                <label>Previous Surgeries</label>
-                <strong>None added</strong>
-            </div>
+    <strong class="info-value" id="fullNameDisplay">
+        Gencer Düven
+    </strong>
 
-        </div>
+    <input
+        class="input-field"
+        id="fullNameInput"
+        type="text"
+    >
 
-    </section>
+</div>
 
-    <section class="section">
 
-        <div class="section-header">
-            <h2>Current Status</h2>
-            <span>Profile overview</span>
-        </div>
+<div class="info-item">
 
-        <div class="grid">
+    <span class="info-label">Date of Birth</span>
 
-            <div class="field">
-                <label>Medications</label>
-                <strong>None added</strong>
-            </div>
+    <strong class="info-value" id="dateOfBirthDisplay">
+        —
+    </strong>
 
-            <div class="field">
-                <label>Profile Status</label>
-                <span class="status">Profile Started</span>
-            </div>
+    <input
+        class="input-field"
+        id="dateOfBirthInput"
+        type="date"
+    >
 
-        </div>
+</div>
 
-    </section>
+
+<div class="info-item">
+
+    <span class="info-label">Gender</span>
+
+    <strong class="info-value" id="genderDisplay">
+        —
+    </strong>
+
+    <select
+        class="input-field"
+        id="genderInput"
+    >
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+        <option value="Prefer not to say">
+            Prefer not to say
+        </option>
+    </select>
+
+</div>
+
+
+<div class="info-item">
+
+    <span class="info-label">Blood Type</span>
+
+    <strong class="info-value" id="bloodTypeDisplay">
+        —
+    </strong>
+
+    <select
+        class="input-field"
+        id="bloodTypeInput"
+    >
+        <option value="">Select</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+    </select>
+
+</div>
+
+
+<div class="info-item">
+
+    <span class="info-label">Height</span>
+
+    <strong class="info-value" id="heightDisplay">
+        —
+    </strong>
+
+    <input
+        class="input-field"
+        id="heightInput"
+        type="number"
+        placeholder="cm"
+    >
+
+</div>
+
+
+<div class="info-item">
+
+    <span class="info-label">Weight</span>
+
+    <strong class="info-value" id="weightDisplay">
+        —
+    </strong>
+
+    <input
+        class="input-field"
+        id="weightInput"
+        type="number"
+        step="0.1"
+        placeholder="kg"
+    >
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="card-header">
+    <h2>Health Information</h2>
+</div>
+
+<div class="status-grid">
+
+<div class="status-item">
+    <h3>Chronic Conditions</h3>
+    <p>None added</p>
+</div>
+
+<div class="status-item">
+    <h3>Allergies</h3>
+    <p>None added</p>
+</div>
+
+<div class="status-item">
+    <h3>Previous Surgeries</h3>
+    <p>None added</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="card-header">
+    <h2>Current Status</h2>
+</div>
+
+<div class="status-grid">
+
+<div class="status-item">
+    <h3>Medications</h3>
+    <p>None added</p>
+</div>
+
+<div class="status-item">
+    <h3>Profile Status</h3>
+    <p>Profile Started</p>
+</div>
+
+<div class="status-item">
+    <h3>Health Records</h3>
+    <p>No records added yet</p>
+</div>
+
+</div>
+
+</section>
 
 </main>
 
+</div>
+
+
 <script>
+
+const STORAGE_KEY = "doktiHealthProfile";
+
+const fields = [
+    ["fullNameDisplay", "fullNameInput"],
+    ["dateOfBirthDisplay", "dateOfBirthInput"],
+    ["genderDisplay", "genderInput"],
+    ["bloodTypeDisplay", "bloodTypeInput"],
+    ["heightDisplay", "heightInput"],
+    ["weightDisplay", "weightInput"]
+];
+
+
+function loadProfile() {
+
+    const savedData = localStorage.getItem(STORAGE_KEY);
+
+    if (!savedData) {
+        return;
+    }
+
+    const profile = JSON.parse(savedData);
+
+    document.getElementById("fullNameDisplay").textContent =
+        profile.fullName || "—";
+
+    document.getElementById("dateOfBirthDisplay").textContent =
+        profile.dateOfBirth || "—";
+
+    document.getElementById("genderDisplay").textContent =
+        profile.gender || "—";
+
+    document.getElementById("bloodTypeDisplay").textContent =
+        profile.bloodType || "—";
+
+    document.getElementById("heightDisplay").textContent =
+        profile.height ? profile.height + " cm" : "—";
+
+    document.getElementById("weightDisplay").textContent =
+        profile.weight ? profile.weight + " kg" : "—";
+
+
+    document.getElementById("fullNameInput").value =
+        profile.fullName || "";
+
+    document.getElementById("dateOfBirthInput").value =
+        profile.dateOfBirth || "";
+
+    document.getElementById("genderInput").value =
+        profile.gender || "";
+
+    document.getElementById("bloodTypeInput").value =
+        profile.bloodType || "";
+
+    document.getElementById("heightInput").value =
+        profile.height || "";
+
+    document.getElementById("weightInput").value =
+        profile.weight || "";
+}
+
+
 function toggleEdit() {
-    const fields = [
-        ["fullNameDisplay", "fullNameInput"],
-        ["dateOfBirthDisplay", "dateOfBirthInput"],
-        ["genderDisplay", "genderInput"],
-        ["bloodTypeDisplay", "bloodTypeInput"],
-        ["heightDisplay", "heightInput"],
-        ["weightDisplay", "weightInput"]
-    ];
 
     fields.forEach(([displayId, inputId]) => {
+
         document.getElementById(displayId).style.display = "none";
+
         document.getElementById(inputId).style.display = "block";
+
     });
 
     document.getElementById("fullNameInput").focus();
 }
 
+
 function saveProfile() {
-    const fields = [
-        ["fullNameDisplay", "fullNameInput"],
-        ["dateOfBirthDisplay", "dateOfBirthInput"],
-        ["genderDisplay", "genderInput"],
-        ["bloodTypeDisplay", "bloodTypeInput"],
-        ["heightDisplay", "heightInput"],
-        ["weightDisplay", "weightInput"]
-    ];
+
+    const profile = {
+
+        fullName:
+            document.getElementById("fullNameInput").value,
+
+        dateOfBirth:
+            document.getElementById("dateOfBirthInput").value,
+
+        gender:
+            document.getElementById("genderInput").value,
+
+        bloodType:
+            document.getElementById("bloodTypeInput").value,
+
+        height:
+            document.getElementById("heightInput").value,
+
+        weight:
+            document.getElementById("weightInput").value
+    };
+
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(profile)
+    );
+
+
+    loadProfile();
+
 
     fields.forEach(([displayId, inputId]) => {
-        const display = document.getElementById(displayId);
-        const input = document.getElementById(inputId);
 
-        if (input.value) {
-            display.textContent = input.value;
-        }
+        document.getElementById(displayId).style.display = "block";
 
-        display.style.display = "block";
-        input.style.display = "none";
+        document.getElementById(inputId).style.display = "none";
+
     });
+
 }
+
+
+loadProfile();
+
 </script>
 
 </body>
 </html>
+```
