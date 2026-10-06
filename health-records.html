@@ -276,47 +276,86 @@
 
 </div>
 
-<script>
+const fileInput = document.getElementById("fileInput");
+const recordsList = document.getElementById("recordsList");
 
-    const fileInput = document.getElementById("fileInput");
-    const recordsList = document.getElementById("recordsList");
+const STORAGE_KEY = "doktiHealthRecords";
 
-    fileInput.addEventListener("change", function () {
+function loadRecords() {
+    const savedRecords = localStorage.getItem(STORAGE_KEY);
 
-        if (!this.files.length) {
-            return;
-        }
+    if (!savedRecords) {
+        return;
+    }
 
-        const file = this.files[0];
+    const records = JSON.parse(savedRecords);
 
-        const emptyState = recordsList.querySelector(".empty-state");
+    recordsList.innerHTML = "";
 
-        if (emptyState) {
-            emptyState.remove();
-        }
-
-        const record = document.createElement("div");
-
-        record.className = "record";
-
-        record.innerHTML = `
-            <div>
-                <div class="record-name">${file.name}</div>
-                <div class="record-meta">
-                    Added just now
-                </div>
-            </div>
-
-            <div class="record-type">
-                ${file.type || "Document"}
-            </div>
-        `;
-
-        recordsList.prepend(record);
-
+    records.forEach(function(record) {
+        addRecordToScreen(record);
     });
+}
 
-</script>
+function addRecordToScreen(record) {
+
+    const recordElement = document.createElement("div");
+
+    recordElement.className = "record";
+
+    recordElement.innerHTML = `
+        <div>
+            <div class="record-name">${record.name}</div>
+            <div class="record-meta">
+                ${record.date}
+            </div>
+        </div>
+
+        <div class="record-type">
+            ${record.type}
+        </div>
+    `;
+
+    recordsList.prepend(recordElement);
+}
+
+fileInput.addEventListener("change", function() {
+
+    if (!this.files.length) {
+        return;
+    }
+
+    const file = this.files[0];
+
+    const emptyState = recordsList.querySelector(".empty-state");
+
+    if (emptyState) {
+        emptyState.remove();
+    }
+
+    const newRecord = {
+        name: file.name,
+        type: file.type || "Document",
+        date: "Added just now"
+    };
+
+    const savedRecords = localStorage.getItem(STORAGE_KEY);
+
+    const records = savedRecords
+        ? JSON.parse(savedRecords)
+        : [];
+
+    records.unshift(newRecord);
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(records)
+    );
+
+    addRecordToScreen(newRecord);
+});
+
+loadRecords();
 
 </body>
 </html>
