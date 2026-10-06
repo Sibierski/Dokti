@@ -8,298 +8,259 @@
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fa;
             color: #1f2937;
         }
 
-        .app {
+        .layout {
             display: flex;
             min-height: 100vh;
         }
 
         .sidebar {
             width: 240px;
-            background: #ffffff;
-            border-right: 1px solid #e5e7eb;
+            background: #111827;
+            color: white;
             padding: 28px 18px;
-            flex-shrink: 0;
         }
 
         .logo {
             font-size: 28px;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 35px;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
 
         .nav a {
             display: block;
+            color: #cbd5e1;
             text-decoration: none;
-            color: #6b7280;
             padding: 12px 14px;
             border-radius: 8px;
             margin-bottom: 6px;
         }
 
-        .nav a:hover {
-            background: #f3f4f6;
-            color: #111827;
-        }
-
+        .nav a:hover,
         .nav a.active {
-            background: #111827;
+            background: #1f2937;
             color: white;
         }
 
         .main {
             flex: 1;
-            padding: 35px;
-            min-width: 0;
         }
 
         .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 35px;
+            background: white;
+            padding: 24px 36px;
+            border-bottom: 1px solid #e5e7eb;
         }
 
-        .eyebrow {
+        .topbar-label {
             font-size: 12px;
             font-weight: 700;
-            color: #6b7280;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            margin-bottom: 6px;
         }
 
-        h1 {
+        .topbar-title {
             font-size: 30px;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #6b7280;
-        }
-
-        .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #111827;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-weight: 700;
+        }
+
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 36px;
         }
 
         .hero {
-            background: #111827;
+            background: linear-gradient(135deg, #111827, #263449);
             color: white;
+            padding: 34px;
             border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
-        .hero h2 {
-            font-size: 24px;
-            margin-bottom: 12px;
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: 30px;
         }
 
         .hero p {
-            color: #d1d5db;
+            margin: 0;
+            color: #dbe4ef;
             line-height: 1.6;
-            max-width: 700px;
+            max-width: 800px;
         }
 
-        .data-card {
+        .card {
             background: white;
-            border: 1px solid #e5e7eb;
             border-radius: 14px;
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 26px;
+            margin-bottom: 24px;
+            border: 1px solid #e5e7eb;
         }
 
-        .data-card h2 {
-            font-size: 20px;
-            margin-bottom: 18px;
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 21px;
+        }
+
+        .card-subtitle {
+            color: #64748b;
+            margin-bottom: 22px;
+            line-height: 1.5;
         }
 
         .data-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 14px;
         }
 
-        .data-item {
-            background: #f9fafb;
-            border: 1px solid #edf0f3;
+        .data-card {
+            border: 1px solid #e5e7eb;
             border-radius: 10px;
-            padding: 16px;
+            padding: 18px;
         }
 
         .data-label {
             font-size: 11px;
-            color: #6b7280;
             font-weight: 700;
-            letter-spacing: .5px;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 8px;
         }
 
         .data-value {
-            margin-top: 8px;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
         }
 
         .profile-summary {
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px solid #edf0f3;
-            color: #6b7280;
-            font-size: 14px;
+            margin-top: 20px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 10px;
+            color: #475569;
             line-height: 1.6;
         }
 
-        .card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 28px;
-            margin-bottom: 25px;
-        }
-
-        .card h2 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .card-description {
-            color: #6b7280;
-            line-height: 1.5;
-            margin-bottom: 25px;
-        }
-
-        .input-area {
+        textarea {
             width: 100%;
             min-height: 130px;
-            border: 1px solid #d1d5db;
+            resize: vertical;
+            border: 1px solid #cbd5e1;
             border-radius: 10px;
             padding: 16px;
-            font-family: Arial, sans-serif;
+            font-family: inherit;
             font-size: 15px;
-            resize: vertical;
             outline: none;
         }
 
-        .input-area:focus {
-            border-color: #111827;
+        textarea:focus {
+            border-color: #64748b;
         }
 
-        .button-row {
-            margin-top: 15px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .button {
+        .ask-button {
+            margin-top: 14px;
+            border: 0;
             background: #111827;
             color: white;
-            border: none;
-            padding: 12px 20px;
+            padding: 13px 22px;
             border-radius: 8px;
-            font-weight: 600;
             cursor: pointer;
+            font-weight: 700;
         }
 
-        .button:hover {
-            background: #374151;
+        .ask-button:hover {
+            background: #1f2937;
         }
 
-        .response {
+        .ask-button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .response-box {
             display: none;
             margin-top: 22px;
             padding: 20px;
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
+            background: #f8fafc;
+            border-left: 4px solid #111827;
+            border-radius: 8px;
             line-height: 1.7;
-            color: #374151;
+            white-space: pre-wrap;
         }
 
-        .response-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 8px;
+        .loading {
+            color: #64748b;
         }
 
-        .notice {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
+        .safety {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            padding: 18px;
             border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            color: #6b7280;
-            font-size: 13px;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
 
-        .insights {
+        .features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 18px;
         }
 
-        .insight-card {
+        .feature {
             background: white;
             border: 1px solid #e5e7eb;
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 22px;
         }
 
-        .insight-card h3 {
-            font-size: 16px;
+        .feature h3 {
+            margin-top: 0;
             margin-bottom: 10px;
         }
 
-        .insight-card p {
-            color: #6b7280;
-            font-size: 14px;
-            line-height: 1.5;
+        .feature p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
         }
 
-        @media (max-width: 1000px) {
-            .data-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .insights {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .app {
+        @media (max-width: 800px) {
+            .layout {
                 flex-direction: column;
             }
 
             .sidebar {
                 width: 100%;
-                border-right: none;
-                border-bottom: 1px solid #e5e7eb;
             }
 
-            .main {
-                padding: 22px;
+            .data-grid,
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .content {
+                padding: 20px;
             }
 
-            .data-grid {
+            .data-grid,
+            .features {
                 grid-template-columns: 1fr;
             }
         }
@@ -308,10 +269,9 @@
 
 <body>
 
-<div class="app">
+<div class="layout">
 
     <aside class="sidebar">
-
         <div class="logo">DOKTİ</div>
 
         <nav class="nav">
@@ -323,158 +283,119 @@
             <a href="health-timeline.html">Health Timeline</a>
             <a href="ai-intelligence.html" class="active">AI Intelligence</a>
         </nav>
-
     </aside>
-
 
     <main class="main">
 
-        <div class="topbar">
+        <header class="topbar">
+            <div class="topbar-label">PERSONAL HEALTH INTELLIGENCE</div>
+            <div class="topbar-title">AI Intelligence</div>
+        </header>
 
-            <div>
-                <div class="eyebrow">PERSONAL HEALTH INTELLIGENCE</div>
+        <section class="content">
 
-                <h1>AI Intelligence</h1>
+            <div class="hero">
+                <h1>Meet your DOKTİ Health Intelligence</h1>
+                <p>
+                    DOKTİ connects your health profile, medical records,
+                    laboratory results and medications to create a more
+                    complete view of your health information.
+                </p>
+            </div>
 
-                <div class="subtitle">
-                    Understand your health through connected information.
+            <div class="card">
+                <h2>Your Health Data</h2>
+
+                <div class="data-grid">
+
+                    <div class="data-card">
+                        <div class="data-label">HEALTH PROFILE</div>
+                        <div class="data-value" id="profileStatus">Started</div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-label">HEALTH RECORDS</div>
+                        <div class="data-value" id="recordCount">0</div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-label">LAB RESULTS</div>
+                        <div class="data-value" id="labCount">0</div>
+                    </div>
+
+                    <div class="data-card">
+                        <div class="data-label">MEDICATIONS</div>
+                        <div class="data-value" id="medicationCount">0</div>
+                    </div>
+
+                </div>
+
+                <div class="profile-summary" id="profileSummary">
+                    No health profile information has been added yet.
                 </div>
             </div>
 
-            <div class="avatar" id="avatar">G</div>
+            <div class="card">
 
-        </div>
+                <h2>Ask DOKTİ</h2>
 
-
-        <section class="hero">
-
-            <h2>Meet your DOKTİ Health Intelligence</h2>
-
-            <p>
-                DOKTİ connects your health profile, medical records,
-                laboratory results and medications to create a more
-                complete view of your health information.
-            </p>
-
-        </section>
-
-
-        <section class="data-card">
-
-            <h2>Your Health Data</h2>
-
-            <div class="data-grid">
-
-                <div class="data-item">
-                    <div class="data-label">HEALTH PROFILE</div>
-                    <div class="data-value" id="profileStatus">—</div>
+                <div class="card-subtitle">
+                    Ask a question about your health information.
+                    DOKTİ will use the information currently available
+                    in your DOKTİ health data.
                 </div>
 
-                <div class="data-item">
-                    <div class="data-label">HEALTH RECORDS</div>
-                    <div class="data-value" id="recordCount">0</div>
-                </div>
-
-                <div class="data-item">
-                    <div class="data-label">LAB RESULTS</div>
-                    <div class="data-value" id="labCount">0</div>
-                </div>
-
-                <div class="data-item">
-                    <div class="data-label">MEDICATIONS</div>
-                    <div class="data-value" id="medicationCount">0</div>
-                </div>
-
-            </div>
-
-            <div class="profile-summary" id="profileSummary">
-                No health profile information has been added yet.
-            </div>
-
-        </section>
-
-
-        <section class="card">
-
-            <h2>Ask DOKTİ</h2>
-
-            <p class="card-description">
-                Ask a question about your health information.
-                DOKTİ will use the information currently available
-                in your DOKTİ health data.
-            </p>
-
-            <textarea
-                id="questionInput"
-                class="input-area"
-                placeholder="For example: What health information have I added so far?"
-            ></textarea>
-
-            <div class="button-row">
+                <textarea
+                    id="questionInput"
+                    placeholder="For example: What could explain my recent tiredness?"
+                ></textarea>
 
                 <button
-                    class="button"
-                    onclick="askDokti()">
+                    class="ask-button"
+                    id="askButton"
+                    onclick="askDokti()"
+                >
                     Ask DOKTİ
                 </button>
 
-            </div>
-
-            <div
-                id="responseBox"
-                class="response">
-
-                <div class="response-title">
-                    DOKTİ
+                <div class="response-box" id="responseBox">
+                    <strong>DOKTİ</strong>
+                    <div id="responseText"></div>
                 </div>
 
-                <div id="responseText"></div>
-
             </div>
 
-            <div class="notice">
+            <div class="safety">
                 DOKTİ is designed to support health understanding and
                 preparation for conversations with healthcare professionals.
                 It does not replace medical diagnosis or professional care.
             </div>
 
-        </section>
+            <div class="features">
 
+                <div class="feature">
+                    <h3>Health Patterns</h3>
+                    <p>
+                        DOKTİ can analyze changes and patterns across
+                        your health information over time.
+                    </p>
+                </div>
 
-        <section class="insights">
+                <div class="feature">
+                    <h3>Possible Explanations</h3>
+                    <p>
+                        DOKTİ can explore multiple possible explanations
+                        using your available information.
+                    </p>
+                </div>
 
-            <div class="insight-card">
-
-                <h3>Health Patterns</h3>
-
-                <p>
-                    DOKTİ can later analyze changes and patterns
-                    across your health information over time.
-                </p>
-
-            </div>
-
-
-            <div class="insight-card">
-
-                <h3>Possible Explanations</h3>
-
-                <p>
-                    DOKTİ can later explore multiple possible
-                    explanations using your available information.
-                </p>
-
-            </div>
-
-
-            <div class="insight-card">
-
-                <h3>Health Questions</h3>
-
-                <p>
-                    DOKTİ can help prepare useful questions and
-                    discussion points for healthcare professionals.
-                </p>
+                <div class="feature">
+                    <h3>Health Questions</h3>
+                    <p>
+                        DOKTİ can help prepare useful questions and
+                        discussion points for healthcare professionals.
+                    </p>
+                </div>
 
             </div>
 
@@ -484,7 +405,6 @@
 
 </div>
 
-
 <script>
 
 const PROFILE_KEY = "doktiHealthProfile";
@@ -492,9 +412,7 @@ const RECORDS_KEY = "doktiHealthRecords";
 const LAB_RESULTS_KEY = "doktiStructuredLabResults";
 const MEDICATIONS_KEY = "doktiMedications";
 
-
 function getStoredData(key) {
-
     const data = localStorage.getItem(key);
 
     if (!data) {
@@ -508,33 +426,28 @@ function getStoredData(key) {
     }
 }
 
+function getProfile() {
+
+    const profileData = localStorage.getItem(PROFILE_KEY);
+
+    if (!profileData) {
+        return null;
+    }
+
+    try {
+        return JSON.parse(profileData);
+    } catch {
+        return null;
+    }
+}
 
 function loadAIData() {
 
-    const profileData =
-        localStorage.getItem(PROFILE_KEY);
+    const profile = getProfile();
 
-    let profile = null;
-
-    if (profileData) {
-
-        try {
-            profile = JSON.parse(profileData);
-        } catch {
-            profile = null;
-        }
-    }
-
-
-    const records =
-        getStoredData(RECORDS_KEY);
-
-    const labResults =
-        getStoredData(LAB_RESULTS_KEY);
-
-    const medications =
-        getStoredData(MEDICATIONS_KEY);
-
+    const records = getStoredData(RECORDS_KEY);
+    const labResults = getStoredData(LAB_RESULTS_KEY);
+    const medications = getStoredData(MEDICATIONS_KEY);
 
     document.getElementById("recordCount").textContent =
         records.length;
@@ -545,55 +458,35 @@ function loadAIData() {
     document.getElementById("medicationCount").textContent =
         medications.length;
 
-
     if (profile && profile.fullName) {
 
         document.getElementById("profileStatus").textContent =
             "Active";
 
-        document.getElementById("avatar").textContent =
-            profile.fullName
-                .trim()
-                .charAt(0)
-                .toUpperCase();
-
-
         const profileParts = [];
 
         if (profile.fullName) {
-            profileParts.push(
-                "Name: " + profile.fullName
-            );
+            profileParts.push("Name: " + profile.fullName);
         }
 
         if (profile.dateOfBirth) {
-            profileParts.push(
-                "Date of birth: " + profile.dateOfBirth
-            );
+            profileParts.push("Date of birth: " + profile.dateOfBirth);
         }
 
         if (profile.gender) {
-            profileParts.push(
-                "Gender: " + profile.gender
-            );
+            profileParts.push("Gender: " + profile.gender);
         }
 
         if (profile.bloodType) {
-            profileParts.push(
-                "Blood type: " + profile.bloodType
-            );
+            profileParts.push("Blood type: " + profile.bloodType);
         }
 
         if (profile.height) {
-            profileParts.push(
-                "Height: " + profile.height + " cm"
-            );
+            profileParts.push("Height: " + profile.height + " cm");
         }
 
         if (profile.weight) {
-            profileParts.push(
-                "Weight: " + profile.weight + " kg"
-            );
+            profileParts.push("Weight: " + profile.weight + " kg");
         }
 
         document.getElementById("profileSummary").textContent =
@@ -610,13 +503,132 @@ function loadAIData() {
 }
 
 
-function askDokti() {
+function buildHealthContext() {
 
-    const question =
-        document.getElementById("questionInput")
-            .value
-            .trim();
+    const profile = getProfile();
 
+    const records = getStoredData(RECORDS_KEY);
+    const labResults = getStoredData(LAB_RESULTS_KEY);
+    const medications = getStoredData(MEDICATIONS_KEY);
+
+    let context = "";
+
+    context += "HEALTH PROFILE:\n";
+
+    if (profile) {
+
+        if (profile.fullName)
+            context += "Name: " + profile.fullName + "\n";
+
+        if (profile.dateOfBirth)
+            context += "Date of birth: " + profile.dateOfBirth + "\n";
+
+        if (profile.gender)
+            context += "Gender: " + profile.gender + "\n";
+
+        if (profile.bloodType)
+            context += "Blood type: " + profile.bloodType + "\n";
+
+        if (profile.height)
+            context += "Height: " + profile.height + " cm\n";
+
+        if (profile.weight)
+            context += "Weight: " + profile.weight + " kg\n";
+
+    } else {
+
+        context += "No health profile available.\n";
+    }
+
+
+    context += "\nHEALTH RECORDS:\n";
+
+    if (records.length === 0) {
+
+        context += "No health records.\n";
+
+    } else {
+
+        records.forEach(function(record, index) {
+
+            context +=
+                (index + 1) +
+                ". " +
+                (record.name || "Health record") +
+                " | " +
+                (record.date || "Unknown date") +
+                "\n";
+        });
+    }
+
+
+    context += "\nLABORATORY RESULTS:\n";
+
+    if (labResults.length === 0) {
+
+        context += "No laboratory results.\n";
+
+    } else {
+
+        labResults.forEach(function(result, index) {
+
+            context +=
+                (index + 1) +
+                ". Test: " +
+                (result.name || "Unknown test") +
+                " | Result: " +
+                (result.result || "") +
+                " | Unit: " +
+                (result.unit || "") +
+                " | Reference: " +
+                (result.referenceRange || "") +
+                " | Status: " +
+                (result.status || "") +
+                " | Date: " +
+                (result.date || "") +
+                "\n";
+        });
+    }
+
+
+    context += "\nMEDICATIONS:\n";
+
+    if (medications.length === 0) {
+
+        context += "No medication records.\n";
+
+    } else {
+
+        medications.forEach(function(medication, index) {
+
+            context +=
+                (index + 1) +
+                ". " +
+                (medication.name || "Medication") +
+                " | Dose: " +
+                (medication.dose || "") +
+                " | Frequency: " +
+                (medication.frequency || "") +
+                " | Status: " +
+                (medication.status || "") +
+                " | Start: " +
+                (medication.startDate || "") +
+                " | End: " +
+                (medication.endDate || "") +
+                " | Notes: " +
+                (medication.notes || "") +
+                "\n";
+        });
+    }
+
+    return context;
+}
+
+
+async function askDokti() {
+
+    const questionInput =
+        document.getElementById("questionInput");
 
     const responseBox =
         document.getElementById("responseBox");
@@ -624,6 +636,11 @@ function askDokti() {
     const responseText =
         document.getElementById("responseText");
 
+    const askButton =
+        document.getElementById("askButton");
+
+    const question =
+        questionInput.value.trim();
 
     if (!question) {
 
@@ -636,115 +653,72 @@ function askDokti() {
     }
 
 
-    const profileData =
-        localStorage.getItem(PROFILE_KEY);
+    askButton.disabled = true;
 
-    let profile = null;
-
-    if (profileData) {
-
-        try {
-            profile = JSON.parse(profileData);
-        } catch {
-            profile = null;
-        }
-    }
-
-
-    const records =
-        getStoredData(RECORDS_KEY);
-
-    const labResults =
-        getStoredData(LAB_RESULTS_KEY);
-
-    const medications =
-        getStoredData(MEDICATIONS_KEY);
-
-
-    let response = "";
-
-
-    const lowerQuestion =
-        question.toLowerCase();
-
-
-    if (
-        lowerQuestion.includes("what") &&
-        (
-            lowerQuestion.includes("record") ||
-            lowerQuestion.includes("data") ||
-            lowerQuestion.includes("information")
-        )
-    ) {
-
-        response =
-            "Based on the information currently stored in DOKTİ, " +
-            "your health profile is " +
-            (profile ? "available" : "not fully completed") +
-            ", with " +
-            records.length +
-            " health record(s), " +
-            labResults.length +
-            " laboratory result(s), and " +
-            medications.length +
-            " medication record(s).";
-
-    } else if (
-        lowerQuestion.includes("medication") ||
-        lowerQuestion.includes("medicine")
-    ) {
-
-        if (medications.length === 0) {
-
-            response =
-                "There are currently no medication records stored in DOKTİ.";
-
-        } else {
-
-            const medicationNames =
-                medications.map(function(medication) {
-                    return medication.name;
-                });
-
-            response =
-                "DOKTİ currently has " +
-                medications.length +
-                " medication record(s): " +
-                medicationNames.join(", ") +
-                ".";
-        }
-
-    } else if (
-        lowerQuestion.includes("lab") ||
-        lowerQuestion.includes("result")
-    ) {
-
-        if (labResults.length === 0) {
-
-            response =
-                "There are currently no structured laboratory results stored in DOKTİ.";
-
-        } else {
-
-            response =
-                "DOKTİ currently has " +
-                labResults.length +
-                " structured laboratory result(s) stored.";
-        }
-
-    } else {
-
-        response =
-            "I can currently access your stored DOKTİ health data, " +
-            "including your health profile, health records, laboratory " +
-            "results and medications. A real AI health analysis engine " +
-            "will be connected in a later stage.";
-    }
-
+    askButton.textContent = "DOKTİ is thinking...";
 
     responseBox.style.display = "block";
 
-    responseText.textContent = response;
+    responseText.innerHTML =
+        '<span class="loading">Analyzing your health information...</span>';
+
+
+    const healthContext =
+        buildHealthContext();
+
+
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:5000/ask",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    question: question,
+                    health_context: healthContext
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "DOKTİ could not process the request."
+            );
+        }
+
+
+        responseText.textContent =
+            data.answer ||
+            "DOKTİ did not return an answer.";
+
+    }
+
+    catch (error) {
+
+        responseText.textContent =
+            "DOKTİ could not connect to the local AI engine. " +
+            "Please make sure the DOKTİ AI Bridge is running on your computer.";
+
+        console.error(error);
+    }
+
+    finally {
+
+        askButton.disabled = false;
+
+        askButton.textContent = "Ask DOKTİ";
+    }
 }
 
 
