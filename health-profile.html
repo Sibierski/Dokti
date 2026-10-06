@@ -163,7 +163,8 @@ h1 {
 .edit-button:hover {
     opacity: 0.85;
 }
-    .save-button {
+
+.save-button {
     border: none;
     background: #27734a;
     color: white;
@@ -178,6 +179,27 @@ h1 {
 .save-button:hover {
     opacity: 0.85;
 }
+
+.input-field {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d9dee8;
+    border-radius: 9px;
+    background: white;
+    color: #172033;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: #172033;
+}
+
+.input-field[type="number"] {
+    appearance: textfield;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -281,45 +303,66 @@ h1 {
 
     <section class="section">
 
-<div class="section-header">
-    <h2>Basic Information</h2>
-    <div>
-        <button class="edit-button" onclick="toggleEdit()">Edit Profile</button>
-        <button class="save-button" onclick="saveProfile()">Save Changes</button>
-    </div>
-</div>
+        <div class="section-header">
+            <h2>Basic Information</h2>
+            <div>
+                <button class="edit-button" onclick="toggleEdit()">Edit Profile</button>
+                <button class="save-button" onclick="saveProfile()">Save Changes</button>
+            </div>
+        </div>
 
         <div class="grid">
 
             <div class="field">
-    <label>Full Name</label>
-    <strong id="fullNameDisplay">Gencer Düven</strong>
-    <input id="fullNameInput" type="text" value="Gencer Düven" style="display:none;">
-</div>
+                <label>Full Name</label>
+                <strong id="fullNameDisplay">Gencer Düven</strong>
+                <input id="fullNameInput" class="input-field" type="text" value="Gencer Düven" style="display:none;">
+            </div>
 
             <div class="field">
-    <label>Date of Birth</label>
-    <strong id="dateOfBirthDisplay">—</strong>
-    <input id="dateOfBirthInput" type="date" style="display:none;">
-</div>
+                <label>Date of Birth</label>
+                <strong id="dateOfBirthDisplay">—</strong>
+                <input id="dateOfBirthInput" class="input-field" type="date" style="display:none;">
+            </div>
+
             <div class="field">
                 <label>Gender</label>
-                <strong>—</strong>
+                <strong id="genderDisplay">—</strong>
+                <select id="genderInput" class="input-field" style="display:none;">
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
             </div>
 
             <div class="field">
                 <label>Blood Type</label>
-                <strong>—</strong>
+                <strong id="bloodTypeDisplay">—</strong>
+                <select id="bloodTypeInput" class="input-field" style="display:none;">
+                    <option value="">Select</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
             </div>
 
             <div class="field">
                 <label>Height</label>
-                <strong>—</strong>
+                <strong id="heightDisplay">—</strong>
+                <input id="heightInput" class="input-field" type="number" placeholder="cm" style="display:none;">
             </div>
 
             <div class="field">
                 <label>Weight</label>
-                <strong>—</strong>
+                <strong id="weightDisplay">—</strong>
+                <input id="weightInput" class="input-field" type="number" step="0.1" placeholder="kg" style="display:none;">
             </div>
 
         </div>
@@ -378,41 +421,49 @@ h1 {
     </section>
 
 </main>
+
 <script>
 function toggleEdit() {
-    const nameDisplay = document.getElementById("fullNameDisplay");
-    const nameInput = document.getElementById("fullNameInput");
+    const fields = [
+        ["fullNameDisplay", "fullNameInput"],
+        ["dateOfBirthDisplay", "dateOfBirthInput"],
+        ["genderDisplay", "genderInput"],
+        ["bloodTypeDisplay", "bloodTypeInput"],
+        ["heightDisplay", "heightInput"],
+        ["weightDisplay", "weightInput"]
+    ];
 
-    const dobDisplay = document.getElementById("dateOfBirthDisplay");
-    const dobInput = document.getElementById("dateOfBirthInput");
+    fields.forEach(([displayId, inputId]) => {
+        document.getElementById(displayId).style.display = "none";
+        document.getElementById(inputId).style.display = "block";
+    });
 
-    nameDisplay.style.display = "none";
-    nameInput.style.display = "block";
-
-    dobDisplay.style.display = "none";
-    dobInput.style.display = "block";
-
-    nameInput.focus();
+    document.getElementById("fullNameInput").focus();
 }
 
 function saveProfile() {
-    const nameDisplay = document.getElementById("fullNameDisplay");
-    const nameInput = document.getElementById("fullNameInput");
+    const fields = [
+        ["fullNameDisplay", "fullNameInput"],
+        ["dateOfBirthDisplay", "dateOfBirthInput"],
+        ["genderDisplay", "genderInput"],
+        ["bloodTypeDisplay", "bloodTypeInput"],
+        ["heightDisplay", "heightInput"],
+        ["weightDisplay", "weightInput"]
+    ];
 
-    const dobDisplay = document.getElementById("dateOfBirthDisplay");
-    const dobInput = document.getElementById("dateOfBirthInput");
+    fields.forEach(([displayId, inputId]) => {
+        const display = document.getElementById(displayId);
+        const input = document.getElementById(inputId);
 
-    nameDisplay.textContent = nameInput.value;
-    nameDisplay.style.display = "block";
-    nameInput.style.display = "none";
+        if (input.value) {
+            display.textContent = input.value;
+        }
 
-    if (dobInput.value) {
-        dobDisplay.textContent = dobInput.value;
-    }
-
-    dobDisplay.style.display = "block";
-    dobInput.style.display = "none";
+        display.style.display = "block";
+        input.style.display = "none";
+    });
 }
 </script>
+
 </body>
 </html>
