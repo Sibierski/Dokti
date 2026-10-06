@@ -59,6 +59,7 @@
         .main {
             flex: 1;
             padding: 35px;
+            max-width: 1200px;
         }
 
         .topbar {
@@ -115,6 +116,141 @@
             margin-bottom: 22px;
         }
 
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            background: #ffffff;
+            color: #1f2937;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #111827;
+        }
+
+        .button-row {
+            margin-top: 22px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .save-button {
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background: #374151;
+        }
+
+        .medication-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .medication-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .medication-name {
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .medication-meta {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .medication-detail {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .medication-label {
+            display: block;
+            font-size: 11px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status.current {
+            background: #ecfdf5;
+            color: #047857;
+        }
+
+        .status.completed {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .notes {
+            grid-column: 1 / -1;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
         .empty-state {
             text-align: center;
             padding: 45px 20px;
@@ -127,6 +263,16 @@
             margin-bottom: 8px;
         }
 
+        @media (max-width: 900px) {
+            .medication-item {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .status {
+                justify-self: start;
+            }
+        }
+
         @media (max-width: 800px) {
             .sidebar {
                 width: 190px;
@@ -134,6 +280,14 @@
 
             .main {
                 padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
             }
         }
     </style>
@@ -180,17 +334,98 @@
 
         <section class="card">
 
+            <h2>Add Medication</h2>
+
+            <p class="card-description">
+                Add a medication to keep your treatment history organized.
+            </p>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="medicationName">Medication Name</label>
+                    <input
+                        type="text"
+                        id="medicationName"
+                        placeholder="e.g. Vitamin D"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="medicationDose">Dose</label>
+                    <input
+                        type="text"
+                        id="medicationDose"
+                        placeholder="e.g. 1000 IU"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="medicationFrequency">Frequency</label>
+                    <input
+                        type="text"
+                        id="medicationFrequency"
+                        placeholder="e.g. Once daily"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="medicationStatus">Status</label>
+                    <select id="medicationStatus">
+                        <option value="Current">Current</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="medicationStartDate">Start Date</label>
+                    <input
+                        type="date"
+                        id="medicationStartDate"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="medicationEndDate">End Date</label>
+                    <input
+                        type="date"
+                        id="medicationEndDate"
+                    >
+                </div>
+
+                <div class="form-group full">
+                    <label for="medicationNotes">Notes</label>
+                    <textarea
+                        id="medicationNotes"
+                        placeholder="Optional notes about this medication..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <div class="button-row">
+                <button class="save-button" onclick="saveMedication()">
+                    Save Medication
+                </button>
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
             <h2>Current Medications</h2>
 
             <p class="card-description">
                 Your active medications will appear here.
             </p>
 
-            <div class="empty-state">
+            <div id="currentMedicationList" class="medication-list">
 
-                <strong>No medications added yet.</strong>
-
-                Add medications to keep your treatment history organized.
+                <div id="currentEmptyState" class="empty-state">
+                    <strong>No medications added yet.</strong>
+                    Add medications to keep your treatment history organized.
+                </div>
 
             </div>
 
@@ -205,11 +440,12 @@
                 Previous medications and treatment periods will appear here.
             </p>
 
-            <div class="empty-state">
+            <div id="historyMedicationList" class="medication-list">
 
-                <strong>No medication history yet.</strong>
-
-                Your previous medications will be recorded here.
+                <div id="historyEmptyState" class="empty-state">
+                    <strong>No medication history yet.</strong>
+                    Your previous medications will be recorded here.
+                </div>
 
             </div>
 
@@ -218,6 +454,277 @@
     </main>
 
 </div>
+
+
+<script>
+
+    const MEDICATION_STORAGE_KEY = "doktiMedications";
+
+
+    function saveMedication() {
+
+        const name =
+            document.getElementById("medicationName").value.trim();
+
+        const dose =
+            document.getElementById("medicationDose").value.trim();
+
+        const frequency =
+            document.getElementById("medicationFrequency").value.trim();
+
+        const status =
+            document.getElementById("medicationStatus").value;
+
+        const startDate =
+            document.getElementById("medicationStartDate").value;
+
+        const endDate =
+            document.getElementById("medicationEndDate").value;
+
+        const notes =
+            document.getElementById("medicationNotes").value.trim();
+
+
+        if (!name || !dose || !frequency || !startDate) {
+
+            alert(
+                "Please enter at least the Medication Name, Dose, Frequency and Start Date."
+            );
+
+            return;
+        }
+
+
+        const newMedication = {
+
+            name: name,
+
+            dose: dose,
+
+            frequency: frequency,
+
+            status: status,
+
+            startDate: startDate,
+
+            endDate: endDate || "—",
+
+            notes: notes || "No additional notes."
+
+        };
+
+
+        const savedData =
+            localStorage.getItem(MEDICATION_STORAGE_KEY);
+
+        const medications =
+            savedData ? JSON.parse(savedData) : [];
+
+
+        medications.unshift(newMedication);
+
+
+        localStorage.setItem(
+            MEDICATION_STORAGE_KEY,
+            JSON.stringify(medications)
+        );
+
+
+        clearMedicationForm();
+
+        renderMedications();
+
+    }
+
+
+    function clearMedicationForm() {
+
+        document.getElementById("medicationName").value = "";
+
+        document.getElementById("medicationDose").value = "";
+
+        document.getElementById("medicationFrequency").value = "";
+
+        document.getElementById("medicationStatus").value = "Current";
+
+        document.getElementById("medicationStartDate").value = "";
+
+        document.getElementById("medicationEndDate").value = "";
+
+        document.getElementById("medicationNotes").value = "";
+
+    }
+
+
+    function createMedicationElement(medication) {
+
+        const element =
+            document.createElement("div");
+
+        element.className = "medication-item";
+
+
+        const statusClass =
+            medication.status === "Current"
+                ? "current"
+                : "completed";
+
+
+        element.innerHTML = `
+
+            <div>
+
+                <div class="medication-name">
+                    ${medication.name}
+                </div>
+
+                <div class="medication-meta">
+                    ${medication.dose}
+                </div>
+
+            </div>
+
+
+            <div class="medication-detail">
+
+                <span class="medication-label">
+                    Frequency
+                </span>
+
+                ${medication.frequency}
+
+            </div>
+
+
+            <div class="medication-detail">
+
+                <span class="medication-label">
+                    Start Date
+                </span>
+
+                ${medication.startDate}
+
+            </div>
+
+
+            <div class="medication-detail">
+
+                <span class="medication-label">
+                    End Date
+                </span>
+
+                ${medication.endDate}
+
+            </div>
+
+
+            <div>
+
+                <span class="status ${statusClass}">
+                    ${medication.status}
+                </span>
+
+            </div>
+
+
+            <div class="notes">
+
+                <strong>Notes:</strong>
+                ${medication.notes}
+
+            </div>
+
+        `;
+
+
+        return element;
+
+    }
+
+
+    function renderMedications() {
+
+        const currentList =
+            document.getElementById("currentMedicationList");
+
+        const historyList =
+            document.getElementById("historyMedicationList");
+
+        const currentEmptyState =
+            document.getElementById("currentEmptyState");
+
+        const historyEmptyState =
+            document.getElementById("historyEmptyState");
+
+
+        currentList.innerHTML = "";
+
+        historyList.innerHTML = "";
+
+
+        const savedData =
+            localStorage.getItem(MEDICATION_STORAGE_KEY);
+
+
+        const medications =
+            savedData ? JSON.parse(savedData) : [];
+
+
+        const currentMedications =
+            medications.filter(function(medication) {
+
+                return medication.status === "Current";
+
+            });
+
+
+        const completedMedications =
+            medications.filter(function(medication) {
+
+                return medication.status === "Completed";
+
+            });
+
+
+        if (currentMedications.length === 0) {
+
+            currentList.appendChild(currentEmptyState);
+
+        } else {
+
+            currentMedications.forEach(function(medication) {
+
+                currentList.appendChild(
+                    createMedicationElement(medication)
+                );
+
+            });
+
+        }
+
+
+        if (completedMedications.length === 0) {
+
+            historyList.appendChild(historyEmptyState);
+
+        } else {
+
+            completedMedications.forEach(function(medication) {
+
+                historyList.appendChild(
+                    createMedicationElement(medication)
+                );
+
+            });
+
+        }
+
+    }
+
+
+    renderMedications();
+
+</script>
 
 </body>
 </html>
