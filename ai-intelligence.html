@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOKTİ | AI Intelligence</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            border-right: 1px solid #e5e7eb;
+            padding: 28px 18px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+        }
+
+        .nav a {
+            display: block;
+            text-decoration: none;
+            color: #6b7280;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .nav a:hover {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .nav a.active {
+            background: #111827;
+            color: white;
+        }
+
+        .main {
+            flex: 1;
+            padding: 35px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6b7280;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .hero {
+            background: #111827;
+            color: white;
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #d1d5db;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .input-area {
+            width: 100%;
+            min-height: 130px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 16px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            outline: none;
+        }
+
+        .input-area:focus {
+            border-color: #111827;
+        }
+
+        .button-row {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .button {
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #374151;
+        }
+
+        .insights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .insight-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .insight-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .insight-card p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .notice {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .insights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .app {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .main {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">DOKTİ</div>
+
+        <nav class="nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="health-profile.html">Health Profile</a>
+            <a href="health-records.html">Health Records</a>
+            <a href="lab-results.html">Lab Results</a>
+            <a href="medications.html">Medications</a>
+            <a href="health-timeline.html">Health Timeline</a>
+            <a href="ai-intelligence.html" class="active">AI Intelligence</a>
+        </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <div class="eyebrow">PERSONAL HEALTH INTELLIGENCE</div>
+
+                <h1>AI Intelligence</h1>
+
+                <div class="subtitle">
+                    Understand your health through connected information.
+                </div>
+            </div>
+
+            <div class="avatar">G</div>
+
+        </div>
+
+
+        <section class="hero">
+
+            <h2>Meet your DOKTİ Health Intelligence</h2>
+
+            <p>
+                DOKTİ will analyze your health profile, records,
+                laboratory results, medications and lifestyle data
+                to help you understand patterns and prepare better
+                questions for healthcare professionals.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Ask DOKTİ</h2>
+
+            <p class="card-description">
+                Describe what you are experiencing or ask a question
+                about your health information.
+            </p>
+
+            <textarea
+                class="input-area"
+                placeholder="For example: I've been feeling unusually tired recently..."
+            ></textarea>
+
+            <div class="button-row">
+
+                <button class="button">
+                    Ask DOKTİ
+                </button>
+
+            </div>
+
+            <div class="notice">
+                DOKTİ is designed to support health understanding and
+                preparation for conversations with healthcare professionals.
+                It does not replace medical diagnosis or professional care.
+            </div>
+
+        </section>
+
+
+        <section class="insights">
+
+            <div class="insight-card">
+
+                <h3>Health Patterns</h3>
+
+                <p>
+                    Identify meaningful patterns across your health
+                    information over time.
+                </p>
+
+            </div>
+
+
+            <div class="insight-card">
+
+                <h3>Possible Explanations</h3>
+
+                <p>
+                    Explore possible explanations for symptoms and
+                    changes, together with appropriate next steps.
+                </p>
+
+            </div>
+
+
+            <div class="insight-card">
+
+                <h3>Health Questions</h3>
+
+                <p>
+                    Prepare useful questions and discussion points
+                    for your healthcare professional.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
