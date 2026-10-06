@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOKTİ | Medications</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            border-right: 1px solid #e5e7eb;
+            padding: 28px 18px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+        }
+
+        .nav a {
+            display: block;
+            text-decoration: none;
+            color: #6b7280;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .nav a:hover {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .nav a.active {
+            background: #111827;
+            color: white;
+        }
+
+        .main {
+            flex: 1;
+            padding: 35px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6b7280;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #6b7280;
+            margin-bottom: 22px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #6b7280;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">DOKTİ</div>
+
+        <nav class="nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="health-profile.html">Health Profile</a>
+            <a href="health-records.html">Health Records</a>
+            <a href="lab-results.html">Lab Results</a>
+            <a href="medications.html" class="active">Medications</a>
+            <a href="health-timeline.html">Health Timeline</a>
+            <a href="ai-intelligence.html">AI Intelligence</a>
+        </nav>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <div class="eyebrow">PERSONAL MEDICATIONS</div>
+
+                <h1>Medications</h1>
+
+                <div class="subtitle">
+                    Keep track of your current and previous medications.
+                </div>
+            </div>
+
+            <div class="avatar">G</div>
+
+        </div>
+
+
+        <section class="card">
+
+            <h2>Current Medications</h2>
+
+            <p class="card-description">
+                Your active medications will appear here.
+            </p>
+
+            <div class="empty-state">
+
+                <strong>No medications added yet.</strong>
+
+                Add medications to keep your treatment history organized.
+
+            </div>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Medication History</h2>
+
+            <p class="card-description">
+                Previous medications and treatment periods will appear here.
+            </p>
+
+            <div class="empty-state">
+
+                <strong>No medication history yet.</strong>
+
+                Your previous medications will be recorded here.
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
