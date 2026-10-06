@@ -32,12 +32,6 @@ body {
 .logo {
     font-size: 28px;
     font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.profile-name {
-    color: #6b7280;
-    font-size: 14px;
     margin-bottom: 30px;
 }
 
@@ -170,7 +164,8 @@ body {
     display: none;
 }
 
-.input-field:focus {
+.input-field:focus,
+.health-input:focus {
     outline: none;
     border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
@@ -197,6 +192,21 @@ body {
     margin: 0;
     color: #6b7280;
     font-size: 13px;
+    line-height: 1.5;
+}
+
+.health-input {
+    display: none;
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 @media (max-width: 800px) {
@@ -255,6 +265,8 @@ body {
 
 </div>
 
+
+<!-- BASIC INFORMATION -->
 
 <section class="card">
 
@@ -406,33 +418,89 @@ body {
 </section>
 
 
+<!-- HEALTH INFORMATION -->
+
 <section class="card">
 
 <div class="card-header">
+
     <h2>Health Information</h2>
+
+    <div>
+
+        <button class="edit-button" onclick="toggleHealthEdit()">
+            Edit
+        </button>
+
+        <button class="save-button" onclick="saveHealthInfo()">
+            Save Changes
+        </button>
+
+    </div>
+
 </div>
+
 
 <div class="status-grid">
 
+
 <div class="status-item">
+
     <h3>Chronic Conditions</h3>
-    <p>None added</p>
+
+    <p id="conditionsDisplay">
+        None added
+    </p>
+
+    <textarea
+        class="health-input"
+        id="conditionsInput"
+        placeholder="e.g. Asthma, diabetes, hypertension"
+    ></textarea>
+
 </div>
 
+
 <div class="status-item">
+
     <h3>Allergies</h3>
-    <p>None added</p>
+
+    <p id="allergiesDisplay">
+        None added
+    </p>
+
+    <textarea
+        class="health-input"
+        id="allergiesInput"
+        placeholder="e.g. Penicillin, pollen, food allergies"
+    ></textarea>
+
 </div>
 
+
 <div class="status-item">
+
     <h3>Previous Surgeries</h3>
-    <p>None added</p>
+
+    <p id="surgeriesDisplay">
+        None added
+    </p>
+
+    <textarea
+        class="health-input"
+        id="surgeriesInput"
+        placeholder="e.g. Appendectomy, knee surgery"
+    ></textarea>
+
 </div>
+
 
 </div>
 
 </section>
 
+
+<!-- CURRENT STATUS -->
 
 <section class="card">
 
@@ -469,6 +537,10 @@ body {
 <script>
 
 const STORAGE_KEY = "doktiHealthProfile";
+const HEALTH_INFO_KEY = "doktiHealthInformation";
+
+
+/* BASIC INFORMATION */
 
 const fields = [
     ["fullNameDisplay", "fullNameInput"],
@@ -587,10 +659,117 @@ function saveProfile() {
 }
 
 
+/* HEALTH INFORMATION */
+
+function loadHealthInfo() {
+
+    const savedData = localStorage.getItem(HEALTH_INFO_KEY);
+
+    if (!savedData) {
+        return;
+    }
+
+    const healthInfo = JSON.parse(savedData);
+
+
+    document.getElementById("conditionsDisplay").textContent =
+        healthInfo.conditions || "None added";
+
+    document.getElementById("allergiesDisplay").textContent =
+        healthInfo.allergies || "None added";
+
+    document.getElementById("surgeriesDisplay").textContent =
+        healthInfo.surgeries || "None added";
+
+
+    document.getElementById("conditionsInput").value =
+        healthInfo.conditions || "";
+
+    document.getElementById("allergiesInput").value =
+        healthInfo.allergies || "";
+
+    document.getElementById("surgeriesInput").value =
+        healthInfo.surgeries || "";
+}
+
+
+function toggleHealthEdit() {
+
+    document.getElementById("conditionsDisplay").style.display =
+        "none";
+
+    document.getElementById("allergiesDisplay").style.display =
+        "none";
+
+    document.getElementById("surgeriesDisplay").style.display =
+        "none";
+
+
+    document.getElementById("conditionsInput").style.display =
+        "block";
+
+    document.getElementById("allergiesInput").style.display =
+        "block";
+
+    document.getElementById("surgeriesInput").style.display =
+        "block";
+
+
+    document.getElementById("conditionsInput").focus();
+}
+
+
+function saveHealthInfo() {
+
+    const healthInfo = {
+
+        conditions:
+            document.getElementById("conditionsInput").value,
+
+        allergies:
+            document.getElementById("allergiesInput").value,
+
+        surgeries:
+            document.getElementById("surgeriesInput").value
+    };
+
+
+    localStorage.setItem(
+        HEALTH_INFO_KEY,
+        JSON.stringify(healthInfo)
+    );
+
+
+    loadHealthInfo();
+
+
+    document.getElementById("conditionsDisplay").style.display =
+        "block";
+
+    document.getElementById("allergiesDisplay").style.display =
+        "block";
+
+    document.getElementById("surgeriesDisplay").style.display =
+        "block";
+
+
+    document.getElementById("conditionsInput").style.display =
+        "none";
+
+    document.getElementById("allergiesInput").style.display =
+        "none";
+
+    document.getElementById("surgeriesInput").style.display =
+        "none";
+}
+
+
+/* INITIAL LOAD */
+
 loadProfile();
+loadHealthInfo();
 
 </script>
 
 </body>
 </html>
-```
